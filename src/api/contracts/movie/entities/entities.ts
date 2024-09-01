@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const movie = z.object({
+    id: z.number().positive(),
     title: z.string(),
     cover: z.string(),
     year: z.number().positive().min(1900),
@@ -11,4 +12,8 @@ export const movie = z.object({
     rating: z.number().min(0).max(5),
 })
 
-export const movieThumbnail = movie.pick({title: true, year: true, genre: true, cover: true})
+export type Movie = z.infer<typeof movie>;
+
+export const movieThumbnail = movie.pick({id: true, title: true, year: true, cover: true})
+
+export type MovieThumbnail = z.infer<typeof movieThumbnail>;
