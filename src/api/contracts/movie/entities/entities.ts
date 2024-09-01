@@ -4,6 +4,7 @@ export const movie = z.object({
     id: z.number().positive(),
     title: z.string(),
     cover: z.string(),
+    thumb: z.string(),
     year: z.number().positive().min(1900),
     genre: z.string(),
     director: z.string(),
