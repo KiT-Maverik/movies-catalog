@@ -7,7 +7,7 @@
     "app:build": "react-scripts build",
     "app:test": "react-scripts test",
     "config:eject": "react-scripts eject",
-    "server:start": "json-server server/db.json -p 3001"
+    "server:start": "json-server server/db.json server/routes.json -p 3001"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
@@ -22,6 +22,7 @@
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "axios": "^1.7.7",
+    "express": "^4.19.2",
     "json-server": "^1.0.0-beta.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
