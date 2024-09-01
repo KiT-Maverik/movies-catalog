@@ -1,5 +1,5 @@
 import React, {ReactNode, useMemo, useState} from 'react';
-import {AppBar, Box, Button, Drawer, IconButton, Stack, Skeleton, Toolbar, Typography} from "@mui/material";
+import {AppBar, Box, Button, Drawer, Stack, Skeleton, Toolbar, Typography} from "@mui/material";
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import logo from './logo.svg';
 
@@ -32,7 +32,9 @@ export function PageWrapper({children}: PageWrapperProps) {
                             <Button color="inherit" startIcon={<MenuRoundedIcon />} onClick={() => setShowDrawer(true)}>Movie Catalog</Button>
                         </Toolbar>
                     </AppBar>
-                <Box component='main' sx={style.main}>{children}</Box>
+                <Box component='main' sx={style.main}>
+                        {children}
+                </Box>
             </Stack>
         </>
     );
