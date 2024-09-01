@@ -2,6 +2,13 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "app:start": "react-scripts start",
+    "app:build": "react-scripts build",
+    "app:test": "react-scripts test",
+    "config:eject": "react-scripts eject",
+    "server:start": "json-server server/db.json -p 3001"
+  },
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
@@ -15,6 +22,7 @@
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "axios": "^1.7.7",
+    "json-server": "^1.0.0-beta.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.1",
@@ -22,12 +30,6 @@
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4",
     "zod": "^3.23.8"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
