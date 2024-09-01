@@ -1,10 +1,10 @@
 import React from 'react';
+import {CssBaseline} from "@mui/material";
 
 import {
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
-import './App.css';
 import {PageWrapper} from "design/templates/page-wrapper/page-wrapper";
 import {routes} from "api/constants/routes.constats";
 import {HomePage} from "design/pages/home/home";
@@ -24,6 +24,7 @@ const router = createBrowserRouter([
 function App() {
   return (
       <PageWrapper>
+          <CssBaseline/>
           <RouterProvider router={router} />
       </PageWrapper>
   );
