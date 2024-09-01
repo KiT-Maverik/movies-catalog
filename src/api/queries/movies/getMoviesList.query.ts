@@ -1,6 +1,6 @@
 import {useCallback, useState} from "react";
 import axios from "axios";
-import {routes} from "api/constants/routes.constats";
+import {endpoint} from "api/constants/endpoints.constats";
 
 export const useGetMoviesListQuery = () => {
     const [loading, setLoading] = useState(false)
@@ -8,7 +8,7 @@ export const useGetMoviesListQuery = () => {
 
     const getMoviesList = useCallback(() => {
         setLoading(true)
-        axios.get(routes.movie.getMoviesList)
+        axios.get(endpoint.movie.getList)
             .then((response) => { setMovies(response.data) })
             .catch((error) => {})
             .finally(() => setLoading(false))
