@@ -1,8 +1,14 @@
 import React from 'react';
-import {Box} from "@mui/material";
+import {Box, Container} from "@mui/material";
+
+import style from './movie.styles'
 
 export function MoviePage() {
     return (
-        <Box>home</Box>
+        <Container sx={style.container}>
+            <Box sx={style.cover}>cover</Box>
+            <Box sx={style.info}>info</Box>
+            <Box sx={style.tabs}>tabs</Box>
+        </Container>
     );
 }

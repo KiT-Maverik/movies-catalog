@@ -3,13 +3,13 @@ import {SxProps, Theme} from "@mui/material";
 export const container: SxProps<Theme> = {
     minHeight: "100vh",
     gap: 5,
-}
+} as const
 
 export const main: SxProps<Theme> = {
     flexGrow: 1,
     display: "flex",
     flexDirection: "column",
-}
+} as const
 
 export const drawer: { container: SxProps<Theme>; item: { container: SxProps<Theme>; cover: SxProps<Theme> } } = {
     container: {
@@ -27,7 +27,7 @@ export const drawer: { container: SxProps<Theme>; item: { container: SxProps<The
             aspectRatio: 1/3
         }
 }
-}
+} as const
 
 export const skeleton: { cover: SxProps<Theme>; label: SxProps<Theme> } = {
     cover: {
@@ -36,6 +36,6 @@ export const skeleton: { cover: SxProps<Theme>; label: SxProps<Theme> } = {
     label: {
         width: 100,
     }
-}
+} as const
 
 export default { container, drawer, main, skeleton }

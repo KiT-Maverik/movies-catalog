@@ -9,10 +9,10 @@ export const container:SxProps<Theme> = {
     height: 1,
     userSelect: "none",
     flexGrow: 1,
-}
+} as const
 
 export const icon:SxProps<Theme> = {
     fontSize: 120,
-}
+} as const
 
 export default { container, icon };
