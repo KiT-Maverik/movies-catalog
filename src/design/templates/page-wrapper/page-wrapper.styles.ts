@@ -12,6 +12,7 @@ export const drawer: { container: SxProps<Theme>; item: { container: SxProps<The
  container: {
     display: "flex",
         gap: 2,
+     alignItems: "center",
         p: theme => theme.spacing(1, 2),
  },
         cover: {
