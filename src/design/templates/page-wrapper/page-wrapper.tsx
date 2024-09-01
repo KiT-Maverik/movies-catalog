@@ -26,7 +26,7 @@ export function PageWrapper({children}: PageWrapperProps) {
             <Drawer open={showDrawer} onClose={() => setShowDrawer(false)}>
                 {drawerContent}
             </Drawer>
-            <Stack gap={5}>
+            <Stack sx={style.container}>
                     <AppBar position="static">
                         <Toolbar>
                             <Button color="inherit" startIcon={<MenuRoundedIcon />} onClick={() => setShowDrawer(true)}>Movie Catalog</Button>
