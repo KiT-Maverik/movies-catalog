@@ -16,17 +16,17 @@ export const drawer: { container: SxProps<Theme>; item: { container: SxProps<The
         width: 300,
     },
     item: {
- container: {
-    display: "flex",
-        gap: 2,
-     alignItems: "center",
-        p: theme => theme.spacing(1, 2),
- },
+        container: {
+            display: "flex",
+            gap: 2,
+            alignItems: "center",
+            p: theme => theme.spacing(1, 2),
+        },
         cover: {
-     height: 48,
+            height: 48,
             aspectRatio: 1/3
         }
-}
+    }
 } as const
 
 export const skeleton: { cover: SxProps<Theme>; label: SxProps<Theme> } = {
