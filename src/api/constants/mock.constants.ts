@@ -4,7 +4,8 @@ export const movies: Movie[] = [
     {
         id: 1,
         title: "Inception",
-        cover: "https://example.com/inception.jpg",
+        cover: "/img/inception.png",
+        thumb: "/img/inception_thumb.png",
         year: 2010,
         genre: "Science Fiction",
         director: "Christopher Nolan",
@@ -15,7 +16,8 @@ export const movies: Movie[] = [
     {
         id: 2,
         title: "The Godfather",
-        cover: "https://example.com/godfather.jpg",
+        cover: "/img/the_godfather.png",
+        thumb: "/img/the_godfather__thumb.png",
         year: 1972,
         genre: "Crime",
         director: "Francis Ford Coppola",
@@ -26,7 +28,8 @@ export const movies: Movie[] = [
     {
         id: 3,
         title: "The Dark Knight",
-        cover: "https://example.com/dark_knight.jpg",
+        cover: "/img/the_dark_knight.png",
+        thumb: "/img/the_dark_knight__thumb.png",
         year: 2008,
         genre: "Action",
         director: "Christopher Nolan",
@@ -37,7 +40,8 @@ export const movies: Movie[] = [
     {
         id: 4,
         title: "Pulp Fiction",
-        cover: "https://example.com/pulp_fiction.jpg",
+        cover: "/img/pulp_fiction.png",
+        thumb: "/img/pulp_fiction__thumb.png",
         year: 1994,
         genre: "Crime",
         director: "Quentin Tarantino",
@@ -48,7 +52,8 @@ export const movies: Movie[] = [
     {
         id: 5,
         title: "Forrest Gump",
-        cover: "https://example.com/forrest_gump.jpg",
+        cover: "/img/forrest_gump.png",
+        thumb: "/img/forrest_gump__thumb.png",
         year: 1994,
         genre: "Drama",
         director: "Robert Zemeckis",
@@ -59,7 +64,8 @@ export const movies: Movie[] = [
     {
         id: 6,
         title: "Gladiator",
-        cover: "https://example.com/gladiator.jpg",
+        cover: "/img/gladiator.png",
+        thumb: "/img/gladiator__thumb.png",
         year: 2000,
         genre: "Action",
         director: "Ridley Scott",
@@ -70,7 +76,8 @@ export const movies: Movie[] = [
     {
         id: 7,
         title: "Titanic",
-        cover: "https://example.com/titanic.jpg",
+        cover: "/img/titanic.png",
+        thumb: "/img/titanic_thumb.png",
         year: 1997,
         genre: "Romance",
         director: "James Cameron",
@@ -81,7 +88,8 @@ export const movies: Movie[] = [
     {
         id: 8,
         title: "Jurassic Park",
-        cover: "https://example.com/jurassic_park.jpg",
+        cover: "/img/jurassic_park.png",
+        thumb: "/img/jurassic_park__thumb.png",
         year: 1993,
         genre: "Adventure",
         director: "Steven Spielberg",
@@ -92,7 +100,8 @@ export const movies: Movie[] = [
     {
         id: 9,
         title: "The Shawshank Redemption",
-        cover: "https://example.com/shawshank_redemption.jpg",
+        cover: "/img/the_shawshank_redemption.png",
+        thumb: "/img/the_shawshank_redemption__thumb.png",
         year: 1994,
         genre: "Drama",
         director: "Frank Darabont",
@@ -103,7 +112,8 @@ export const movies: Movie[] = [
     {
         id: 10,
         title: "The Matrix",
-        cover: "https://example.com/matrix.jpg",
+        cover: "/img/the_matrix.png",
+        thumb: "/img/the_matrix__thumb.png",
         year: 1999,
         genre: "Science Fiction",
         director: "Lana Wachowski, Lilly Wachowski",
