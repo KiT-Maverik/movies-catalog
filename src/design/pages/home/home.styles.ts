@@ -3,10 +3,12 @@ import {SxProps, Theme} from "@mui/material";
 export const container:SxProps<Theme> = {
     display: "flex",
     flexDirection: "column",
-    justifySelf: 'center',
+    justifyContent: 'center',
     alignItems: "center",
     gap: 5,
     height: 1,
+    userSelect: "none",
+    flexGrow: 1,
 }
 
 export const icon:SxProps<Theme> = {

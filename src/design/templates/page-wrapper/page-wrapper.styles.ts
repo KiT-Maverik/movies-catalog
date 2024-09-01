@@ -7,6 +7,8 @@ export const container: SxProps<Theme> = {
 
 export const main: SxProps<Theme> = {
     flexGrow: 1,
+    display: "flex",
+    flexDirection: "column",
 }
 
 export const drawer: { container: SxProps<Theme>; item: { container: SxProps<Theme>; cover: SxProps<Theme> } } = {
