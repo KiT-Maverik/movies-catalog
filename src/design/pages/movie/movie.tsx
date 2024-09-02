@@ -19,7 +19,7 @@ export function MoviePage() {
     const {cover, cast, year, title, director, genre, rating, plotSummary} = useMemo<{ [key in keyof Omit<Movie, 'id' | 'thumb'>]: ReactNode }>(() => {
         if (loading || !movie) return {
             cover: <Skeleton sx={style.skeleton.cover}/>,
-            cast: <Skeleton/>,
+            cast: [1,2,3].map(item => <Skeleton key={item} sx={style.skeleton.cast}/>),
             year: <Skeleton sx={style.skeleton.year}/>,
             title: <Skeleton sx={style.skeleton.title}/>,
             director: <Skeleton sx={style.skeleton.director}/>,

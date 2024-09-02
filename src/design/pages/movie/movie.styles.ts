@@ -43,7 +43,7 @@ const info: SxProps = {
     flexDirection: "column",
 } as const
 
-const skeleton: { cover: SxProps<Theme>; title: SxProps<Theme>; director: SxProps<Theme>; genre: SxProps<Theme>; year: SxProps<Theme>; } = {
+const skeleton: { cast: SxProps<Theme>;  cover: SxProps<Theme>; title: SxProps<Theme>; director: SxProps<Theme>; genre: SxProps<Theme>; year: SxProps<Theme>; } = {
     cover: {
         ...cover.image
     },
@@ -63,6 +63,11 @@ const skeleton: { cover: SxProps<Theme>; title: SxProps<Theme>; director: SxProp
         fontSize: theme => theme.typography.caption.fontSize,
         width: 50,
     },
+    cast: {
+        display: 'inline-block',
+        width: 50,
+        mr: 1
+    }
 } as const
 
 export default {container, info, cover, skeleton}
