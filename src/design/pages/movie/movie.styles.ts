@@ -8,6 +8,7 @@ enum AREA {
 export const container: SxProps<Theme> = (theme: Theme) => ({
     display: "grid",
     gap: 5,
+    gridTemplateColumns: '1fr 1fr',
     gridTemplateAreas: `
         "${AREA.COVER}"
         "${AREA.INFO}"
