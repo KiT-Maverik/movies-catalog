@@ -23,7 +23,8 @@ export const drawer: { container: SxProps<Theme>; item: { container: SxProps<The
             p: theme => theme.spacing(1, 2),
         },
         cover: {
-            height: 48,
+            height: 24,
+            width: 24,
             aspectRatio: 1/3
         }
     }
