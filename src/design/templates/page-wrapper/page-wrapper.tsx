@@ -1,13 +1,22 @@
-import React, {ReactNode, useEffect, useMemo, useState} from 'react';
-import { Outlet } from 'react-router-dom';
-import {AppBar, Box, Button, Drawer, Stack, Skeleton, Toolbar, Typography} from "@mui/material";
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
-import logo from './logo.svg';
+import {
+    AppBar,
+    Box,
+    Button,
+    Drawer,
+    Stack,
+    Skeleton,
+    Toolbar,
+    Typography,
+    ListItemText,
+    ListItemIcon, MenuItem, MenuList
+} from "@mui/material";
+import React, {useEffect, useMemo, useState} from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 
-import style from './page-wrapper.styles'
 import {useGetMoviesThumbnailListQuery} from "api/queries/movies/getMoviesThumbnailList.query";
-import {useNavigate} from "react-router-dom";
-import {routes} from "../../../api/constants/routes.constats";
+import {routes} from "api/constants/routes.constats";
+import style from './page-wrapper.styles'
 
 export function PageWrapper() {
     const [showDrawer, setShowDrawer] = useState(false)
@@ -24,12 +33,25 @@ export function PageWrapper() {
                 <Skeleton sx={style.skeleton.label}/>
             </Box>
         ))
-        else return moviesThumbnailList.map(({title, year, thumb, id}) => (
-            <Box key={title} sx={style.drawer.item.container} onClick={() => navigate(routes.movie(id.toString()))}>
-                <Box component='img' src={thumb} sx={style.drawer.item.cover}/>
-                <Typography color='text.secondary'>{`${title} (${year})`}</Typography>
-            </Box>
-        ))
+        else return (
+            <MenuList>
+                {
+                    moviesThumbnailList.map(({title, year, thumb, id}) => (
+                        <MenuItem key={title} onClick={() => {
+                            navigate(routes.movie(id.toString()))
+                            setShowDrawer(false)
+                        }}>
+                            <ListItemIcon>
+                                <Box component='img' src={thumb} sx={style.drawer.item.cover}/>
+                            </ListItemIcon>
+                            <ListItemText>
+                                <Typography color='text.secondary'>{`${title} (${year})`}</Typography>
+                            </ListItemText>
+                        </MenuItem>
+                    ))
+                }
+            </MenuList>
+        )
     }, [loading, moviesThumbnailList]);
 
     return (
