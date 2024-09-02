@@ -1,32 +1,26 @@
 import React from 'react';
 import {CssBaseline} from "@mui/material";
 
-import {
-    createBrowserRouter,
-    RouterProvider,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import {PageWrapper} from "design/templates/page-wrapper/page-wrapper";
 import {routes} from "api/constants/routes.constats";
 import {HomePage} from "design/pages/home/home";
 import {MoviePage} from "design/pages/movie/movie";
 
-const router = createBrowserRouter([
-    {
-        path: routes.home,
-        element: <HomePage />,
-    },
-    {
-        path: routes.movie,
-        element: <MoviePage />,
-    },
-]);
-
 function App() {
   return (
-      <PageWrapper>
+      <>
           <CssBaseline/>
-          <RouterProvider router={router} />
-      </PageWrapper>
+          <Router>
+              <Routes>
+                <Route path={routes.root} element={<PageWrapper />}>
+                    <Route index element={<HomePage />} />
+                    <Route path={routes.movie()} element={<MoviePage />} />
+                 </Route>
+              </Routes>
+          </Router>
+      </>
   );
 }
 
