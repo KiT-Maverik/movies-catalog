@@ -35,10 +35,10 @@ export function MoviePage() {
                 </Stack>
                 <Rating value={rating} readOnly />
                 <Typography fontWeight='bold'>{`Cast: `}
-                <Typography component='span'>{cast.join(', ')}</Typography>
+                    <Typography component='span'>{cast.join(', ')}</Typography>
                 </Typography>
+                <Typography>{plotSummary}</Typography>
             </Box>
-            <Box sx={style.tabs}>tabs</Box>
         </Container>
     );
 }
