@@ -23,14 +23,26 @@ export const container: SxProps<Theme> = (theme: Theme) => ({
     }
 } as const)
 
-const cover: SxProps = {
+const cover: { container: SxProps; image: SxProps  }= {
+container: {
     gridArea: AREA.COVER,
-    background: 'aliceblue'
+        display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+},
+    image: {
+        width: 1,
+        height: 1,
+        maxHeight: 480,
+        maxWidth: 480,
+    }
 } as const
 
 const info: SxProps = {
     gridArea: AREA.INFO,
-    background: 'aliceblue'
+    display: "flex",
+    gap: 2,
+    flexDirection: "column",
 } as const
 
 const tabs: SxProps = {
