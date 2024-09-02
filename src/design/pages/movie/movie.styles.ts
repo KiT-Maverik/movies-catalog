@@ -31,6 +31,7 @@ container: {
     image: {
         width: 1,
         height: 1,
+        aspectRatio: 1,
         maxHeight: 480,
         maxWidth: 480,
     }
@@ -45,7 +46,8 @@ const info: SxProps = {
 
 const skeleton: { cast: SxProps<Theme>;  cover: SxProps<Theme>; title: SxProps<Theme>; director: SxProps<Theme>; genre: SxProps<Theme>; year: SxProps<Theme>; } = {
     cover: {
-        ...cover.image
+        ...cover.image,
+        transform: 'none',
     },
     title: {
         fontSize: theme => theme.typography.h3.fontSize,
