@@ -42,4 +42,26 @@ const info: SxProps = {
     flexDirection: "column",
 } as const
 
-export default {container, info, cover}
+const skeleton: { cover: SxProps<Theme>; title: SxProps<Theme>; director: SxProps<Theme>; genre: SxProps<Theme>; year: SxProps<Theme>; } = {
+    cover: {
+        ...cover.image
+    },
+    title: {
+        fontSize: theme => theme.typography.h3.fontSize,
+        maxWidth: 250,
+    },
+    genre: {
+        fontSize: theme => theme.typography.caption.fontSize,
+        width: 50,
+    },
+    director: {
+        fontSize: theme => theme.typography.caption.fontSize,
+        width: 100,
+    },
+    year: {
+        fontSize: theme => theme.typography.caption.fontSize,
+        width: 50,
+    },
+} as const
+
+export default {container, info, cover, skeleton}
