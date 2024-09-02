@@ -1,9 +1,11 @@
-import React, {useEffect} from 'react';
-import {Box, Container, Rating, Stack, Typography} from "@mui/material";
+import {Box, Container, Rating, Skeleton, Stack, Typography} from "@mui/material";
+import React, {ReactNode, useEffect, useMemo} from 'react';
+import {useParams} from "react-router-dom";
+
+import {useGetMovieByIdQuery} from "api/queries/movies/getMovieById.query";
+import {Movie} from "api/contracts/movie/entities/entities";
 
 import style from './movie.styles'
-import {useGetMovieByIdQuery} from "api/queries/movies/getMovieById.query";
-import {useParams} from "react-router-dom";
 
 export function MoviePage() {
     const {loading, movie, getMovieById} = useGetMovieByIdQuery()
@@ -14,30 +16,48 @@ export function MoviePage() {
         if (movieId) getMovieById(parseInt(movieId))
     }, [movieId])
 
-    if (!movie) return null
-    if (loading) return null
-
-    const {cover, cast, year, title, director, genre, rating, plotSummary} = movie
+    const {cover, cast, year, title, director, genre, rating, plotSummary} = useMemo<{ [key in keyof Omit<Movie, 'id' | 'thumb'>]: ReactNode }>(() => {
+        if (loading || !movie) return {
+            cover: <Skeleton/>,
+            cast: <Skeleton/>,
+            year: <Skeleton/>,
+            title: <Skeleton/>,
+            director: <Skeleton/>,
+            genre: <Skeleton/>,
+            rating: <Rating value={0} disabled />,
+            plotSummary: <Skeleton/>,
+        }
+        else return {
+            cover: <Box component='img' src={movie.cover} sx={style.cover.image}/>,
+            cast: <Typography component='span'>{movie.cast.join(', ')}</Typography>,
+            year: `Year: ${movie.year}`,
+            title: <Typography variant='h3'>{movie.title}</Typography>,
+            director: `Director: ${movie.director}`,
+            genre: `Genre: ${movie.genre}`,
+            rating: <Rating value={movie.rating} readOnly />,
+            plotSummary: <Typography>{movie.plotSummary}</Typography>,
+        }
+    }, [movie, loading]);
 
     return (
         <Container sx={style.container}>
             <Box sx={style.cover.container}>
-                <Box component='img' src={cover}  sx={style.cover.image}/>
+                {cover}
             </Box>
             <Box sx={style.info}>
                 <Stack>
-                    <Typography variant='h3'>{title}</Typography>
+                    {title}
                     <Stack direction='row' gap={2}>
-                        <Typography variant='caption' color="text.secondary">{`Director: ${director}`}</Typography>
-                        <Typography variant='caption' color="text.secondary">{`Genre: ${genre}`}</Typography>
-                        <Typography variant='caption' color="text.secondary">{`Year: ${year}`}</Typography>
+                        <Typography variant='caption' color="text.secondary">{director}</Typography>
+                        <Typography variant='caption' color="text.secondary">{genre}</Typography>
+                        <Typography variant='caption' color="text.secondary">{year}</Typography>
                     </Stack>
                 </Stack>
-                <Rating value={rating} readOnly />
+                {rating}
                 <Typography fontWeight='bold'>{`Cast: `}
-                    <Typography component='span'>{cast.join(', ')}</Typography>
+                    {cast}
                 </Typography>
-                <Typography>{plotSummary}</Typography>
+                {plotSummary}
             </Box>
         </Container>
     );
