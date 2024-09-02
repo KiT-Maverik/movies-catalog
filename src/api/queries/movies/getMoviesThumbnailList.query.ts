@@ -13,7 +13,7 @@ export const useGetMoviesThumbnailListQuery = () => {
         setLoading(true)
 
         setTimeout(() => {
-            setMoviesList(movies.map(({id, title, year, cover}) => ({id, title, year, cover})));
+            setMoviesList(movies.map(({id, title, year, thumb}) => ({id, title, year, thumb})));
             setLoading(false);
         }, delay);
     }, []);

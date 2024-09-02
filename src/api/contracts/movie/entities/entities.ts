@@ -15,6 +15,6 @@ export const movie = z.object({
 
 export type Movie = z.infer<typeof movie>;
 
-export const movieThumbnail = movie.pick({id: true, title: true, year: true, cover: true})
+export const movieThumbnail = movie.pick({id: true, title: true, year: true, thumb: true})
 
 export type MovieThumbnail = z.infer<typeof movieThumbnail>;
