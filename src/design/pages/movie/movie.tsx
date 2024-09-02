@@ -3,13 +3,16 @@ import {Box, Container, Rating, Stack, Typography} from "@mui/material";
 
 import style from './movie.styles'
 import {useGetMovieByIdQuery} from "api/queries/movies/getMovieById.query";
+import {useParams} from "react-router-dom";
 
 export function MoviePage() {
     const {loading, movie, getMovieById} = useGetMovieByIdQuery()
 
+    const { movieId } = useParams();
+
     useEffect(() => {
-        getMovieById(2)
-    }, [])
+        if (movieId) getMovieById(parseInt(movieId))
+    }, [movieId])
 
     if (!movie) return null
     if (loading) return null
