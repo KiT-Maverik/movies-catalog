@@ -12,6 +12,10 @@ app.get('/movies', (req, res) => {
     res.json(movies)
 })
 
+app.get('/movies/:id', (req, res) => {
+    res.status(200).json(movies.find((movie) => movie.id === parseInt(req.params.id)));
+})
+
 app.patch('/movies/:id', (req, res) => {
     movies = movies.map(movie => {
         if (movie.id === parseInt(req.params.id, 10)) return {...movie, ...req.body}
