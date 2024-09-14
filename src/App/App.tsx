@@ -7,7 +7,6 @@ import {
 
 import {Router} from './Router/Router'
 
-
 const queryClient = new QueryClient()
 
 export const App = () => {
