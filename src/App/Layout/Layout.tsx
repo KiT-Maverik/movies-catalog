@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import React, {useMemo, useState} from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import {useGetMoviesListQuery} from "api/queries/movies/useGetMoviesListQuery.query";
+import {useGetMoviesListQuery} from "api/queries/movies/useGetMoviesListQuery";
 
 import {routes} from "App";
 import style from './Layout.styles'
