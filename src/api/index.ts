@@ -1,3 +1,5 @@
+export * from './api.client'
+
 // Constants
 export * from "./constants/query-keys.constants"
 export * from "./constants/endpoints.constats"
