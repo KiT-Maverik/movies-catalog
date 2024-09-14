@@ -22,7 +22,7 @@ export function PageWrapper() {
     const [showDrawer, setShowDrawer] = useState(false)
 
     const navigate = useNavigate()
-    const getMoviesListQuery = useGetMoviesListQuery()
+    const {getMoviesListQuery} = useGetMoviesListQuery()
 
     const drawerContent = useMemo(() => {
         if (getMoviesListQuery.isLoading) return [1, 2, 3, 4, 5].map(item => (
