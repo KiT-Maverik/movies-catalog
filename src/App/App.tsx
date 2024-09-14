@@ -3,10 +3,10 @@ import {CssBaseline} from "@mui/material";
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import {PageWrapper} from "design/templates/page-wrapper/page-wrapper";
+import {PageWrapper} from "design/templates/PageWrapper/PageWrapper";
 import {routes} from "api/constants/routes.constats";
-import {HomePage} from "design/pages/home/home";
-import {MoviePage} from "design/pages/movie/movie";
+import {HomePage} from "design/pages/HomePage/HomePage";
+import {MoviePage} from "design/pages/MoviePage/MoviePage";
 import {
     QueryClient,
     QueryClientProvider,
