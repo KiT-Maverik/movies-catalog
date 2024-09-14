@@ -26,7 +26,7 @@ app.patch('/movies/:id', (req, res) => {
 
 app.delete('/movies/:id', (req, res) => {
     movies = movies.filter(movie => movie.id !== parseInt(req.params.id, 10));
-    res.status(204);
+    res.status(204).json({status: 'Movie deleted'});
 });
 
 app.listen(port, () => {
