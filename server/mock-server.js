@@ -1,8 +1,12 @@
 require('dotenv').config();
+const cors = require('cors');  // Import cors package
 const express = require('express')
 let movies = require('./data/movies.data')
 const app = express()
 const port = process.env.SERVER_PORT;
+
+app.use(cors());
+app.use(express.json());
 
 app.get('/movies', (req, res) => {
     res.json(movies)
