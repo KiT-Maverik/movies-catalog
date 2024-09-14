@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express')
 let movies = require('./data/movies.data')
 const app = express()
-const port = process.env.PORT;
+const port = process.env.SERVER_PORT;
 
 app.get('/movies', (req, res) => {
     res.json(movies)
