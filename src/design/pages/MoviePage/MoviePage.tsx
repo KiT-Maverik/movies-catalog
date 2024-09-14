@@ -1,21 +1,39 @@
-import {Box, Container, Rating, Skeleton, Stack, Typography} from "@mui/material";
-import React, {ReactNode, useEffect, useMemo} from 'react';
-import {useParams} from "react-router-dom";
+import DeleteIcon from '@mui/icons-material/DeleteRounded';
+import {Box, Button, IconButton, Rating, Skeleton, Stack, Typography} from "@mui/material";
+import React, {ReactNode, useCallback, useEffect, useMemo, useState} from 'react';
+import {useNavigate, useParams} from "react-router-dom";
 
-import {useGetMovieByIdQuery} from "api";
+import {useDeleteMovieMutation, useGetMovieByIdQuery} from "api";
 import {Movie} from "api/contracts/movie/entities/entities";
-import {Page} from "design/templates";
+import {Page, Modal} from "design/templates";
 
 import style from './MoviePage.styles'
+import {route, useToast} from "App";
 
 export function MoviePage() {
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
     const { movieId } = useParams();
+    const { showToast } = useToast();
+    const navigate = useNavigate();
 
+    const { deleteMovieMutation } = useDeleteMovieMutation();
     const {getMovieByIdQuery} = useGetMovieByIdQuery(parseInt(movieId || ""))
 
     useEffect(() => {
         getMovieByIdQuery.refetch()
     }, [movieId]);
+
+    const handleMovieDelete = useCallback(() => {
+        deleteMovieMutation.mutateAsync(
+            parseInt(movieId || ""),
+            {
+                onSuccess: () => {
+                    showToast({type: 'info', message: 'Movie deleted'})
+                    navigate(route.home)
+                }
+            }
+        )
+    }, []);
 
     const {cover, cast, year, title, director, genre, rating, plotSummary} = useMemo<{ [key in keyof Omit<Movie, 'id' | 'thumb'>]: ReactNode }>(() => {
         if (getMovieByIdQuery.isLoading || !getMovieByIdQuery.data?.data) return {
@@ -53,7 +71,12 @@ export function MoviePage() {
             </Box>
             <Box sx={style.info}>
                 <Stack>
-                    {title}
+                    <Box>
+                        {title}
+                        <IconButton onClick={() => setShowDeleteModal(true)}>
+                            <DeleteIcon/>
+                        </IconButton>
+                    </Box>
                     <Stack direction='row' gap={2}>
                         <Typography variant='caption' color="text.secondary">{director}</Typography>
                         <Typography variant='caption' color="text.secondary">{genre}</Typography>
@@ -66,6 +89,16 @@ export function MoviePage() {
                 </Typography>
                 {plotSummary}
             </Box>
+            <Modal open={showDeleteModal} onClose={() => setShowDeleteModal(false)}>
+                <Modal.Header title="Are you sure you want to delete this movie?" onClose={() => setShowDeleteModal(false)}/>
+                <Modal.Body>
+                    <Typography>You can not undo this action</Typography>
+                </Modal.Body>
+                <Modal.Actions>
+                    <Button variant='text' onClick={() => setShowDeleteModal(false)}>Cancel</Button>
+                    <Button variant='contained' color="error" onClick={handleMovieDelete}>Delete</Button>
+                </Modal.Actions>
+            </Modal>
         </Page>
     );
 }
