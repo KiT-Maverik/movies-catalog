@@ -7,10 +7,17 @@ import {PageWrapper} from "design/templates/page-wrapper/page-wrapper";
 import {routes} from "api/constants/routes.constats";
 import {HomePage} from "design/pages/home/home";
 import {MoviePage} from "design/pages/movie/movie";
+import {
+    QueryClient,
+    QueryClientProvider,
+} from '@tanstack/react-query'
 
-function App() {
+const queryClient = new QueryClient()
+
+export const App = () => {
   return (
       <>
+          <QueryClientProvider client={queryClient}>
           <CssBaseline/>
           <Router>
               <Routes>
@@ -20,8 +27,7 @@ function App() {
                  </Route>
               </Routes>
           </Router>
+          </QueryClientProvider>
       </>
   );
 }
-
-export default App;
