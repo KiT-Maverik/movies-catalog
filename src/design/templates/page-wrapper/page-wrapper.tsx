@@ -11,10 +11,10 @@ import {
     ListItemText,
     ListItemIcon, MenuItem, MenuList
 } from "@mui/material";
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
+import {useGetMoviesQuery} from "api/queries/movies/useGetMoviesQuery.query";
 
-import {useGetMoviesThumbnailListQuery} from "api/queries/movies/getMoviesThumbnailList.query";
 import {routes} from "api/constants/routes.constats";
 import style from './page-wrapper.styles'
 
@@ -22,21 +22,20 @@ export function PageWrapper() {
     const [showDrawer, setShowDrawer] = useState(false)
 
     const navigate = useNavigate()
-    const {moviesThumbnailList, getMoviesThumbnailList, loading} = useGetMoviesThumbnailListQuery()
-
-    useEffect(() => getMoviesThumbnailList(), [])
+    const moviesQuery = useGetMoviesQuery()
 
     const drawerContent = useMemo(() => {
-        if (loading || !moviesThumbnailList.length) return [1, 2, 3, 4, 5].map(item => (
+        if (moviesQuery.isLoading) return [1, 2, 3, 4, 5].map(item => (
             <Box key={item} sx={style.drawer.item.container}>
                 <Skeleton sx={style.skeleton.cover}/>
                 <Skeleton sx={style.skeleton.label}/>
             </Box>
         ))
+
         else return (
             <MenuList>
                 {
-                    moviesThumbnailList.map(({title, year, thumb, id}) => (
+                    moviesQuery.moviesList.map(({title, year, thumb, id}) => (
                         <MenuItem key={title} onClick={() => {
                             navigate(routes.movie(id.toString()))
                             setShowDrawer(false)
@@ -52,7 +51,7 @@ export function PageWrapper() {
                 }
             </MenuList>
         )
-    }, [loading, moviesThumbnailList]);
+    }, [moviesQuery]);
 
     return (
         <>
