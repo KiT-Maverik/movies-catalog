@@ -1,5 +1,5 @@
-import { Stack, Typography, StackProps, SxProps, Theme } from "@mui/material";
-import { ReactNode, Ref, useCallback } from "react";
+import { Stack, StackProps } from "@mui/material";
+import { ReactNode } from "react";
 import { Helmet } from "react-helmet";
 import { ErrorBoundary } from "react-error-boundary";
 import { Fallback } from "design/organisms";
@@ -8,13 +8,8 @@ import { projectName } from "App";
 import style from "./Page.style";
 
 interface PageProps extends StackProps {
-  containerSx?: SxProps<Theme>;
-  title?: string;
   children: ReactNode;
-  header?: ReactNode;
-  head?: ReactNode;
-  stackRef?: Ref<unknown>;
-  redesigned?: boolean;
+  title?: string;
 }
 
 /**
@@ -27,37 +22,16 @@ interface PageProps extends StackProps {
  *
  * Recommended for usage as a wrapper for page-level components
  */
-export const Page = ({ title, header, sx, children, head }: PageProps) => {
-  const renderHeader = useCallback(() => {
-    if (header) {
-      return header;
-    }
-
-    if (title) {
-      return (
-        <Typography variant="h4" component="h1" sx={style.title}>
-          {title}
-        </Typography>
-      );
-    }
-
-    return null;
-  }, [title, header]);
-
+export const Page = ({ title, children }: PageProps) => {
   return (
-    <ErrorBoundary fallbackRender={() => <Fallback />}>
+    <ErrorBoundary fallback={<Fallback />}>
       <Helmet>
-        {head ? (
-          head
-        ) : (
           <title>
             {title ? `${title} | ${projectName}` : `${projectName}`}
           </title>
-        )}
       </Helmet>
 
       <Stack sx={style.container}>
-        {renderHeader()}
         {children}
       </Stack>
     </ErrorBoundary>
