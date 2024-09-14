@@ -1,23 +1,19 @@
 import {Box, Container, Rating, Skeleton, Stack, Typography} from "@mui/material";
-import React, {ReactNode, useEffect, useMemo} from 'react';
+import React, {ReactNode, useMemo} from 'react';
 import {useParams} from "react-router-dom";
 
-import {useGetMovieByIdQuery} from "api/queries/movies/useGetMoviesListQuery.query";
+import {useGetMovieByIdQuery} from "api";
 import {Movie} from "api/contracts/movie/entities/entities";
 
 import style from './MoviePage.styles'
 
 export function MoviePage() {
-    const {loading, movie, getMovieById} = useGetMovieByIdQuery()
-
     const { movieId } = useParams();
 
-    useEffect(() => {
-        if (movieId) getMovieById(parseInt(movieId))
-    }, [movieId])
+    const {getMovieByIdQuery} = useGetMovieByIdQuery(parseInt(movieId || ""))
 
     const {cover, cast, year, title, director, genre, rating, plotSummary} = useMemo<{ [key in keyof Omit<Movie, 'id' | 'thumb'>]: ReactNode }>(() => {
-        if (loading || !movie) return {
+        if (getMovieByIdQuery.isLoading || !getMovieByIdQuery.movie) return {
             cover: <Skeleton sx={style.skeleton.cover}/>,
             cast: [1,2,3].map(item => <Skeleton key={item} sx={style.skeleton.cast}/>),
             year: <Skeleton sx={style.skeleton.year}/>,
@@ -29,17 +25,21 @@ export function MoviePage() {
                 {[1, 2, 3, 4].map((item) => <Skeleton key={item}/>)}
             </Box>,
         }
-        else return {
-            cover: <Box component='img' src={movie.cover} sx={style.cover.image}/>,
-            cast: <Typography component='span'>{movie.cast.join(', ')}</Typography>,
-            year: `Year: ${movie.year}`,
-            title: <Typography variant='h3'>{movie.title}</Typography>,
-            director: `Director: ${movie.director}`,
-            genre: `Genre: ${movie.genre}`,
-            rating: <Rating value={movie.rating} readOnly />,
-            plotSummary: <Typography>{movie.plotSummary}</Typography>,
+        else {
+            const {cover, cast, year, title, director, genre, rating, plotSummary} = getMovieByIdQuery.movie
+
+            return {
+                cover: <Box component='img' src={cover} sx={style.cover.image}/>,
+                cast: <Typography component='span'>{cast.join(', ')}</Typography>,
+                year: `Year: ${year}`,
+                title: <Typography variant='h3'>{title}</Typography>,
+                director: `Director: ${director}`,
+                genre: `Genre: ${genre}`,
+                rating: <Rating value={rating} readOnly/>,
+                plotSummary: <Typography>{plotSummary}</Typography>,
+            }
         }
-    }, [movie, loading]);
+    }, [getMovieByIdQuery]);
 
     return (
         <Container sx={style.container}>

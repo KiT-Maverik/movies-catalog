@@ -6,5 +6,5 @@ import {queryKey, Movie, endpoint} from "api";
 export const useGetMovieByIdQuery = (id: number) => {
     const {isLoading, data} = useQuery({ queryKey: [queryKey.getMovieById], queryFn: async () => await axios.get<Movie>(endpoint.movie.getById(id)) })
 
-    return {getMovieQuery: { isLoading, movies: data?.data }}
+    return {getMovieByIdQuery: { isLoading, movie: data?.data }}
 }
