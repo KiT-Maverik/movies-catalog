@@ -8,6 +8,7 @@ import {
 import {globalStyles, theme} from "styles";
 
 import {Router} from './Router/Router'
+import {ToastProvider} from "./ToastProvider/ToastProvider";
 
 const queryClient = new QueryClient()
 
@@ -18,7 +19,9 @@ export const App = () => {
               <ThemeProvider theme={theme()}>
                 <CssBaseline/>
                   <GlobalStyles styles={globalStyles} />
-                <Router/>
+                  <ToastProvider>
+                      <Router/>
+                  </ToastProvider>
               </ThemeProvider>
           </QueryClientProvider>
       </>
