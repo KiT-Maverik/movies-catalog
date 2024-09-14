@@ -22,10 +22,10 @@ export function PageWrapper() {
     const [showDrawer, setShowDrawer] = useState(false)
 
     const navigate = useNavigate()
-    const getmoviesListQuery = useGetMoviesListQuery()
+    const getMoviesListQuery = useGetMoviesListQuery()
 
     const drawerContent = useMemo(() => {
-        if (getmoviesListQuery.isLoading) return [1, 2, 3, 4, 5].map(item => (
+        if (getMoviesListQuery.isLoading) return [1, 2, 3, 4, 5].map(item => (
             <Box key={item} sx={style.drawer.item.container}>
                 <Skeleton sx={style.skeleton.cover}/>
                 <Skeleton sx={style.skeleton.label}/>
@@ -35,7 +35,7 @@ export function PageWrapper() {
         else return (
             <MenuList>
                 {
-                    getmoviesListQuery.moviesList.map(({title, year, thumb, id}) => (
+                    getMoviesListQuery.moviesList.map(({title, year, thumb, id}) => (
                         <MenuItem key={title} onClick={() => {
                             navigate(routes.movie(id.toString()))
                             setShowDrawer(false)
@@ -51,7 +51,7 @@ export function PageWrapper() {
                 }
             </MenuList>
         )
-    }, [getmoviesListQuery]);
+    }, [getMoviesListQuery]);
 
     return (
         <>
