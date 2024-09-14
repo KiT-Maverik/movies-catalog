@@ -1,8 +1,8 @@
 import React from 'react';
-import {Box, Container, Typography} from "@mui/material";
+import {Container, Typography} from "@mui/material";
 import MovieCreationRoundedIcon from '@mui/icons-material/MovieCreationRounded';
 
-import style from './home.styles'
+import style from './HomePage.styles'
 
 export function HomePage() {
     return (

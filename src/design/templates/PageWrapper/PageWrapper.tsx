@@ -15,8 +15,8 @@ import React, {useMemo, useState} from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import {useGetMoviesListQuery} from "api/queries/movies/useGetMoviesListQuery.query";
 
-import {routes} from "api/constants/routes.constats";
-import style from './page-wrapper.styles'
+import {routes} from "App";
+import style from './PageWrapper.styles'
 
 export function PageWrapper() {
     const [showDrawer, setShowDrawer] = useState(false)

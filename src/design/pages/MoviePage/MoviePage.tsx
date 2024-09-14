@@ -2,10 +2,10 @@ import {Box, Container, Rating, Skeleton, Stack, Typography} from "@mui/material
 import React, {ReactNode, useEffect, useMemo} from 'react';
 import {useParams} from "react-router-dom";
 
-import {useGetMovieByIdQuery} from "api/queries/movies/getMovieById.query";
+import {useGetMovieByIdQuery} from "api/queries/movies/useGetMoviesListQuery.query";
 import {Movie} from "api/contracts/movie/entities/entities";
 
-import style from './movie.styles'
+import style from './MoviePage.styles'
 
 export function MoviePage() {
     const {loading, movie, getMovieById} = useGetMovieByIdQuery()
