@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom";
 
 import {useGetMovieByIdQuery} from "api";
 import {Movie} from "api/contracts/movie/entities/entities";
+import {Page} from "design/templates";
 
 import style from './MoviePage.styles'
 
@@ -46,7 +47,7 @@ export function MoviePage() {
     }, [getMovieByIdQuery]);
 
     return (
-        <Container sx={style.container}>
+        <Page containerStyle={style.container}>
             <Box sx={style.cover.container}>
                 {cover}
             </Box>
@@ -65,6 +66,6 @@ export function MoviePage() {
                 </Typography>
                 {plotSummary}
             </Box>
-        </Container>
+        </Page>
     );
 }

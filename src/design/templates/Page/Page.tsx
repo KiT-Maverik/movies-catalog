@@ -1,4 +1,4 @@
-import { Stack, StackProps } from "@mui/material";
+import {Stack, StackProps, SxProps, Theme} from "@mui/material";
 import { ReactNode } from "react";
 import { Helmet } from "react-helmet";
 import { ErrorBoundary } from "react-error-boundary";
@@ -10,6 +10,7 @@ import style from "./Page.style";
 interface PageProps extends StackProps {
   children: ReactNode;
   title?: string;
+  containerStyle?: SxProps<Theme>
 }
 
 /**
@@ -22,7 +23,7 @@ interface PageProps extends StackProps {
  *
  * Recommended for usage as a wrapper for page-level components
  */
-export const Page = ({ title, children }: PageProps) => {
+export const Page = ({ title, children, containerStyle }: PageProps) => {
   return (
     <ErrorBoundary fallback={<Fallback />}>
       <Helmet>
@@ -31,7 +32,7 @@ export const Page = ({ title, children }: PageProps) => {
           </title>
       </Helmet>
 
-      <Stack sx={style.container}>
+      <Stack sx={[style.container, ...(Array.isArray(containerStyle) ? containerStyle : [containerStyle])]}>
         {children}
       </Stack>
     </ErrorBoundary>

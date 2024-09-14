@@ -26,7 +26,6 @@ container: {
     gridArea: AREA.COVER,
         display: "flex",
     justifyContent: "center",
-    alignItems: "center",
 },
     image: {
         width: 1,
