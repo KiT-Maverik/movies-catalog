@@ -1,10 +1,10 @@
 import axios from "axios";
 import {useQuery} from "@tanstack/react-query";
-import {query} from "api/constants/query-keys.constants";
-import {Movie} from "../../contracts/movie/entities/entities";
+
+import {queryKey, Movie, endpoint} from "api";
 
 export const useGetMoviesListQuery = () => {
-    const {isLoading, data} = useQuery({ queryKey: [query.getMoviesList], queryFn: async () => await axios.get<Movie[]>("/movies") })
+    const {isLoading, data} = useQuery({ queryKey: [queryKey.getMoviesList], queryFn: async () => await axios.get<Movie[]>(endpoint.movie.getList) })
 
     return {getMoviesListQuery: { isLoading, moviesList: data?.data || [] }}
 }
