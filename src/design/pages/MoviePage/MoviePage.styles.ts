@@ -14,7 +14,7 @@ export const container: SxProps<Theme> = (theme: Theme) => ({
         "${AREA.INFO}"
     `,
 
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("tablet")]: {
         gridTemplateAreas: `
         "${AREA.COVER} ${AREA.INFO}"
     `,
