@@ -1,5 +1,5 @@
 import {Box, Container, Rating, Skeleton, Stack, Typography} from "@mui/material";
-import React, {ReactNode, useMemo} from 'react';
+import React, {ReactNode, useEffect, useMemo} from 'react';
 import {useParams} from "react-router-dom";
 
 import {useGetMovieByIdQuery} from "api";
@@ -12,8 +12,12 @@ export function MoviePage() {
 
     const {getMovieByIdQuery} = useGetMovieByIdQuery(parseInt(movieId || ""))
 
+    useEffect(() => {
+        getMovieByIdQuery.refetch()
+    }, [movieId]);
+
     const {cover, cast, year, title, director, genre, rating, plotSummary} = useMemo<{ [key in keyof Omit<Movie, 'id' | 'thumb'>]: ReactNode }>(() => {
-        if (getMovieByIdQuery.isLoading || !getMovieByIdQuery.movie) return {
+        if (getMovieByIdQuery.isLoading || !getMovieByIdQuery.data?.data) return {
             cover: <Skeleton sx={style.skeleton.cover}/>,
             cast: [1,2,3].map(item => <Skeleton key={item} sx={style.skeleton.cast}/>),
             year: <Skeleton sx={style.skeleton.year}/>,
@@ -26,7 +30,7 @@ export function MoviePage() {
             </Box>,
         }
         else {
-            const {cover, cast, year, title, director, genre, rating, plotSummary} = getMovieByIdQuery.movie
+            const {cover, cast, year, title, director, genre, rating, plotSummary} = getMovieByIdQuery.data.data
 
             return {
                 cover: <Box component='img' src={cover} sx={style.cover.image}/>,
