@@ -1,1 +1,1 @@
-export const delay = 1000
+export const projectName = "Movie collection"
