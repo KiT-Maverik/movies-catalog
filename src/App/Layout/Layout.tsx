@@ -16,9 +16,9 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import {useGetMoviesListQuery} from "api/queries/movies/useGetMoviesListQuery.query";
 
 import {routes} from "App";
-import style from './PageWrapper.styles'
+import style from './Layout.styles'
 
-export function PageWrapper() {
+export function Layout() {
     const [showDrawer, setShowDrawer] = useState(false)
 
     const navigate = useNavigate()
