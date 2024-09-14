@@ -15,7 +15,7 @@ import React, {useMemo, useState} from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import {useGetMoviesListQuery} from "api/queries/movies/useGetMoviesListQuery";
 
-import {routes} from "App";
+import {route} from "App";
 import style from './Layout.styles'
 
 export function Layout() {
@@ -37,7 +37,7 @@ export function Layout() {
                 {
                     getMoviesListQuery.moviesList.map(({title, year, thumb, id}) => (
                         <MenuItem key={title} onClick={() => {
-                            navigate(routes.movie(id.toString()))
+                            navigate(route.movie(id.toString()))
                             setShowDrawer(false)
                         }}>
                             <ListItemIcon>

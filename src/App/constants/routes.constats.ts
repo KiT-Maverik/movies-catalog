@@ -1,5 +1,4 @@
-export const routes = {
-    root: '/',
-    home: '/HomePage',
+export const route = {
+    home: '/',
     movie: (id = ':movieId') => `movie/${id}`,
 }
