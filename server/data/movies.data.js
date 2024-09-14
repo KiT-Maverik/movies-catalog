@@ -1,6 +1,4 @@
-import {Movie} from "api/contracts/movie/entities/entities";
-
-export const movies: Movie[] = [
+const movies = [
     {
         id: 1,
         title: "Inception",
@@ -122,3 +120,5 @@ export const movies: Movie[] = [
         rating: 4.9
     },
 ];
+
+module.exports = movies;
