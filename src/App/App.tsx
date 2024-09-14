@@ -1,11 +1,11 @@
 import React from 'react';
-import {CssBaseline, ThemeProvider} from "@mui/material";
+import {CssBaseline, GlobalStyles, ThemeProvider} from "@mui/material";
 import {
     QueryClient,
     QueryClientProvider,
 } from '@tanstack/react-query'
 
-import {theme} from "styles";
+import {globalStyles, theme} from "styles";
 
 import {Router} from './Router/Router'
 
@@ -17,6 +17,7 @@ export const App = () => {
           <QueryClientProvider client={queryClient}>
               <ThemeProvider theme={theme()}>
                 <CssBaseline/>
+                  <GlobalStyles styles={globalStyles} />
                 <Router/>
               </ThemeProvider>
           </QueryClientProvider>

@@ -1,10 +1,5 @@
 import {SxProps, Theme} from "@mui/material";
 
-export const container: SxProps<Theme> = {
-    minHeight: "100vh",
-    gap: 5,
-} as const
-
 export const main: SxProps<Theme> = {
     flexGrow: 1,
     display: "flex",
@@ -39,4 +34,4 @@ export const skeleton: { cover: SxProps<Theme>; label: SxProps<Theme> } = {
     }
 } as const
 
-export default { container, drawer, main, skeleton }
+export default { drawer, main, skeleton }

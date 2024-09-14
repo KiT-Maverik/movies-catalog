@@ -58,7 +58,6 @@ export function Layout() {
             <Drawer open={showDrawer} onClose={() => setShowDrawer(false)}>
                 {drawerContent}
             </Drawer>
-            <Stack sx={style.container}>
                     <AppBar position="static">
                         <Toolbar>
                             <Button color="inherit" startIcon={<MenuRoundedIcon />} onClick={() => setShowDrawer(true)}>Movie Catalog</Button>
@@ -67,7 +66,6 @@ export function Layout() {
                 <Box component='main' sx={style.main}>
                     <Outlet/>
                 </Box>
-            </Stack>
         </>
     );
 }
