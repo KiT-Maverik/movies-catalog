@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import React, {useMemo, useState} from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import {useGetMoviesQuery} from "api/queries/movies/useGetMoviesQuery.query";
+import {useGetMoviesListQuery} from "api/queries/movies/useGetMoviesListQuery.query";
 
 import {routes} from "api/constants/routes.constats";
 import style from './page-wrapper.styles'
@@ -22,10 +22,10 @@ export function PageWrapper() {
     const [showDrawer, setShowDrawer] = useState(false)
 
     const navigate = useNavigate()
-    const moviesQuery = useGetMoviesQuery()
+    const getmoviesListQuery = useGetMoviesListQuery()
 
     const drawerContent = useMemo(() => {
-        if (moviesQuery.isLoading) return [1, 2, 3, 4, 5].map(item => (
+        if (getmoviesListQuery.isLoading) return [1, 2, 3, 4, 5].map(item => (
             <Box key={item} sx={style.drawer.item.container}>
                 <Skeleton sx={style.skeleton.cover}/>
                 <Skeleton sx={style.skeleton.label}/>
@@ -35,7 +35,7 @@ export function PageWrapper() {
         else return (
             <MenuList>
                 {
-                    moviesQuery.moviesList.map(({title, year, thumb, id}) => (
+                    getmoviesListQuery.moviesList.map(({title, year, thumb, id}) => (
                         <MenuItem key={title} onClick={() => {
                             navigate(routes.movie(id.toString()))
                             setShowDrawer(false)
@@ -51,7 +51,7 @@ export function PageWrapper() {
                 }
             </MenuList>
         )
-    }, [moviesQuery]);
+    }, [getmoviesListQuery]);
 
     return (
         <>
