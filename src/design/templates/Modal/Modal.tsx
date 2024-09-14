@@ -24,8 +24,9 @@ interface ModalProps extends Omit<MuiModalProps, "children" | "width"> {
   onClose(): void;
   /** Whether to show modal full width */
   layout?: ModalLayout;
-  ContentProps: StackProps;
+  ContentProps?: StackProps;
   width?: ModalWidth;
+  open: boolean;
 }
 
 /**
@@ -36,10 +37,11 @@ export const Modal = ({
   layout = "window",
   onClose,
   width = "md",
+                        open,
   ContentProps,
 }: ModalProps) => {
   return (
-    <MUIModal open sx={style.overlay[layout]} onClose={onClose}>
+    <MUIModal open={open} sx={style.overlay[layout]} onClose={onClose}>
       <Stack
         maxWidth={modalWidthParams[width]}
         sx={style.modal.layout[layout]}

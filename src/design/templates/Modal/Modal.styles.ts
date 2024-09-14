@@ -65,7 +65,7 @@ const modal: {
   }),
   layout: {
     window: (theme: Theme) => ({
-      ...modalLayoutMixin,
+      ...modalLayoutMixin(theme),
       maxHeight: `calc(100vh - ${theme.spacing(6)})`,
       borderRadius: 5,
 
@@ -73,10 +73,10 @@ const modal: {
         maxHeight: `calc(100vh - ${theme.spacing(16)})`,
       },
     }),
-    fullscreen: {
-      ...modalLayoutMixin,
+    fullscreen: (theme: Theme) => ({
+      ...modalLayoutMixin(theme),
       maxWidth: (theme) => theme.breakpoints.values.desktop,
-    },
+    }),
   },
 } as const;
 
