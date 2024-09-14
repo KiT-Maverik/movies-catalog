@@ -1,9 +1,11 @@
 import React from 'react';
-import {CssBaseline} from "@mui/material";
+import {CssBaseline, ThemeProvider} from "@mui/material";
 import {
     QueryClient,
     QueryClientProvider,
 } from '@tanstack/react-query'
+
+import {theme} from "styles";
 
 import {Router} from './Router/Router'
 
@@ -13,8 +15,10 @@ export const App = () => {
   return (
       <>
           <QueryClientProvider client={queryClient}>
-              <CssBaseline/>
-              <Router/>
+              <ThemeProvider theme={theme()}>
+                <CssBaseline/>
+                <Router/>
+              </ThemeProvider>
           </QueryClientProvider>
       </>
   );
