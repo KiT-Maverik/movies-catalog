@@ -8,6 +8,10 @@ export * from './contracts/movie/endpoints/getMovieById.contract'
 export * from './contracts/movie/endpoints/deleteMovie.contract'
 export * from './contracts/movie/entities/entities'
 
+// Mutations
+export * from "./mutations/useDeleteMovieMutation"
+export * from "./mutations/useUpdateMovieMutation"
+
 // Queries
-export * from './queries/movies/useGetMovieByIdQuery.query'
-export * from './queries/movies/useGetMoviesListQuery.query'
+export * from './queries/movies/useGetMovieByIdQuery'
+export * from './queries/movies/useGetMoviesListQuery'
