@@ -13,7 +13,7 @@ export const App = () => {
   return (
       <>
           <QueryClientProvider client={queryClient}>
-          <CssBaseline/>
+              <CssBaseline/>
               <Router/>
           </QueryClientProvider>
       </>
