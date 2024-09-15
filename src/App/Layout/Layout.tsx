@@ -4,12 +4,11 @@ import {
     Box,
     Button,
     Drawer,
-    Stack,
     Skeleton,
     Toolbar,
     Typography,
     ListItemText,
-    ListItemIcon, MenuItem, MenuList
+    ListItemIcon, MenuItem, MenuList, TextField, Autocomplete
 } from "@mui/material";
 import React, {useMemo, useState} from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
@@ -61,6 +60,47 @@ export function Layout() {
                     <AppBar position="static">
                         <Toolbar>
                             <Button color="inherit" startIcon={<MenuRoundedIcon />} onClick={() => setShowDrawer(true)}>Movie Catalog</Button>
+                            <Autocomplete
+                                sx={{ width: 300 }}
+                                options={getMoviesListQuery.moviesList}
+                                autoHighlight
+                                getOptionLabel={(option) => option.title}
+                                renderOption={(props, option) => {
+                                    const { key, ...optionProps } = props;
+                                    return (
+                                        <Box
+                                            key={key}
+                                            component="li"
+                                            sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
+                                            {...optionProps}
+                                        >
+                                            <MenuItem key={option.title} onClick={() => {
+                                                navigate(route.movie(option.id.toString()))
+                                                setShowDrawer(false)
+                                            }}>
+                                                <ListItemIcon>
+                                                    <Box component='img' src={option.cover} sx={style.drawer.item.cover}/>
+                                                </ListItemIcon>
+                                                <ListItemText>
+                                                    <Typography color='text.secondary'>{`${option.title} (${option.year})`}</Typography>
+                                                </ListItemText>
+                                            </MenuItem>
+                                        </Box>
+                                    );
+                                }}
+                                renderInput={(params) => (
+                                    <TextField
+                                        {...params}
+                                        label="Choose a movie"
+                                        slotProps={{
+                                            htmlInput: {
+                                                ...params.inputProps,
+                                                autoComplete: 'new-password', // disable autocomplete and autofill
+                                            },
+                                        }}
+                                    />
+                                )}
+                            />
                         </Toolbar>
                     </AppBar>
                 <Box component='main' sx={style.main}>
