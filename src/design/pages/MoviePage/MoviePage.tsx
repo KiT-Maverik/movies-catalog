@@ -1,6 +1,4 @@
 import DeleteIcon from '@mui/icons-material/DeleteRounded';
-import CancelIcon from '@mui/icons-material/CloseRounded';
-import ConfirmIcon from '@mui/icons-material/CheckRounded';
 import {
     Box,
     Button,
@@ -8,26 +6,23 @@ import {
     Rating,
     Skeleton,
     Stack,
-    TextField,
     Typography,
-    useTheme
 } from "@mui/material";
 import React, {ReactNode, useCallback, useEffect, useMemo, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 
+import {route, useToast} from "App";
 import {useDeleteMovieMutation, useGetMovieByIdQuery} from "api";
 import {Movie} from "api/contracts/movie/entities/entities";
-import {Page, Modal} from "design/templates";
 
+import {Page, Modal} from "design/templates";
 import style from './MoviePage.styles'
-import {route, useToast} from "App";
+import {EditableTitle} from "./EditableTitle/EditableTitle";
 
 export function MoviePage() {
     const [showDeleteModal, setShowDeleteModal] = useState(false)
-    const [editMode, setEditMode] = useState(false)
     const { movieId } = useParams();
     const { showToast } = useToast();
-    const { transitions } = useTheme();
     const navigate = useNavigate();
 
     const { deleteMovieMutation } = useDeleteMovieMutation();
@@ -49,12 +44,11 @@ export function MoviePage() {
         )
     }, []);
 
-    const {cover, cast, year, title, director, genre, rating, plotSummary} = useMemo<{ [key in keyof Omit<Movie, 'id' | 'thumb'>]: ReactNode }>(() => {
+    const {cover, cast, year, director, genre, rating, plotSummary} = useMemo<{ [key in keyof Omit<Movie, 'id' | 'thumb' | 'title'>]: ReactNode }>(() => {
         if (getMovieByIdQuery.isLoading || !getMovieByIdQuery.data?.data) return {
             cover: <Skeleton sx={style.skeleton.cover}/>,
             cast: [1,2,3].map(item => <Skeleton key={item} sx={style.skeleton.cast}/>),
             year: <Skeleton sx={style.skeleton.year}/>,
-            title: <Skeleton sx={style.skeleton.title}/>,
             director: <Skeleton sx={style.skeleton.director}/>,
             genre: <Skeleton sx={style.skeleton.genre}/>,
             rating: <Rating value={0} disabled />,
@@ -63,35 +57,12 @@ export function MoviePage() {
             </Box>,
         }
         else {
-            const {cover, cast, year, title, director, genre, rating, plotSummary} = getMovieByIdQuery.data.data
+            const {cover, cast, year, director, genre, rating, plotSummary} = getMovieByIdQuery.data.data
 
             return {
                 cover: <Box component='img' src={cover} sx={style.cover.image}/>,
                 cast: <Typography component='span'>{cast.join(', ')}</Typography>,
                 year: `Year: ${year}`,
-                title: <Box sx={{display: 'flex', alignItems: 'center', mb: 3}}>
-                    <TextField
-                        variant='standard'
-                        defaultValue={title}
-                        sx={style.header.title} onFocus={() => setEditMode(true)} onBlur={() => setEditMode(false)}
-                    />
-                    <Box sx={{
-                        ...style.header.editControls.idle,
-                        ...{
-                            transition: ({transitions}) => transitions.create('margin', {
-                                easing: transitions.easing.sharp,
-                                duration: transitions.duration.leavingScreen,
-                            }),
-                            ...editMode? { ml: 0 }: {ml: -30}
-                        }}}>
-                        <IconButton>
-                            <CancelIcon/>
-                        </IconButton>
-                        <IconButton onClick={() => 333}>
-                            <ConfirmIcon/>
-                        </IconButton>
-                    </Box>
-                </Box>,
                 director: `Director: ${director}`,
                 genre: `Genre: ${genre}`,
                 rating: <Rating value={rating} readOnly/>,
@@ -108,7 +79,7 @@ export function MoviePage() {
             <Box sx={style.info}>
                 <Stack>
                     <Box sx={style.header.container}>
-                        {title}
+                        <EditableTitle/>
                         <IconButton onClick={() => setShowDeleteModal(true)}>
                             <DeleteIcon/>
                         </IconButton>
