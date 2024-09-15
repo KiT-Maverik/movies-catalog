@@ -37,7 +37,7 @@ container: {
     }
 } as const
 
-const header: { container: SxProps<Theme>; title: SxProps<Theme>; editControls: {
+const header: { container: SxProps<Theme>; menuItem: SxProps<Theme>; title: SxProps<Theme>; editControls: {
         idle: SxProps<Theme>
     } } = {
     container: {
@@ -45,6 +45,10 @@ const header: { container: SxProps<Theme>; title: SxProps<Theme>; editControls: 
         justifyContent: "space-between",
         alignItems: "center",
         gap: 5,
+    },
+    menuItem: {
+      display: "flex",
+      gap: 3,
     },
     title: ({palette, typography}) => ({
       flexGrow: 1,
