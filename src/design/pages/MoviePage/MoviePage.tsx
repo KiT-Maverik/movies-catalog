@@ -1,5 +1,17 @@
 import DeleteIcon from '@mui/icons-material/DeleteRounded';
-import {Box, Button, IconButton, Rating, Skeleton, Stack, Typography} from "@mui/material";
+import CancelIcon from '@mui/icons-material/CloseRounded';
+import ConfirmIcon from '@mui/icons-material/CheckRounded';
+import {
+    Box,
+    Button,
+    IconButton,
+    Rating,
+    Skeleton,
+    Stack,
+    TextField,
+    Typography,
+    useTheme
+} from "@mui/material";
 import React, {ReactNode, useCallback, useEffect, useMemo, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 
@@ -12,8 +24,10 @@ import {route, useToast} from "App";
 
 export function MoviePage() {
     const [showDeleteModal, setShowDeleteModal] = useState(false)
+    const [editMode, setEditMode] = useState(false)
     const { movieId } = useParams();
     const { showToast } = useToast();
+    const { transitions } = useTheme();
     const navigate = useNavigate();
 
     const { deleteMovieMutation } = useDeleteMovieMutation();
@@ -71,8 +85,30 @@ export function MoviePage() {
             </Box>
             <Box sx={style.info}>
                 <Stack>
-                    <Box>
-                        {title}
+                    <Box sx={style.header.container}>
+                        <Box sx={{display: 'flex', alignItems: 'center', mb: 3}}>
+                            <TextField
+                                variant='standard'
+                                value='oewiowp'
+                                sx={style.header.title} onFocus={() => setEditMode(true)} onBlur={() => setEditMode(false)}
+                            />
+                            <Box sx={{
+                                ...style.header.editControls.idle,
+                                ...{
+                                    transition: ({transitions}) => transitions.create('margin', {
+                                        easing: transitions.easing.sharp,
+                                        duration: transitions.duration.leavingScreen,
+                                    }),
+                                    ...editMode? { ml: 0 }: {ml: -30}
+                                }}}>
+                                <IconButton>
+                                    <CancelIcon/>
+                                </IconButton>
+                                <IconButton onClick={() => 333}>
+                                    <ConfirmIcon/>
+                                </IconButton>
+                            </Box>
+                        </Box>
                         <IconButton onClick={() => setShowDeleteModal(true)}>
                             <DeleteIcon/>
                         </IconButton>

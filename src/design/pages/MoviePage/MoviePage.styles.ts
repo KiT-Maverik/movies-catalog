@@ -1,4 +1,5 @@
 import {SxProps, Theme} from "@mui/material";
+import {theme} from "../../../styles";
 
 enum AREA {
     COVER = 'cover',
@@ -36,6 +37,35 @@ container: {
     }
 } as const
 
+const header: { container: SxProps<Theme>; title: SxProps<Theme>; editControls: {
+        idle: SxProps<Theme>
+    } } = {
+    container: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        gap: 5,
+    },
+    title: ({palette, typography}) => ({
+      flexGrow: 1,
+        zIndex: 10,
+        backgroundColor: palette.background.paper,
+
+        input: {
+            ...typography.h3
+        }
+    }),
+    editControls: {
+        idle: {
+            display: "inline-block",
+            transition: ({transitions}) => transitions.create('margin', {
+                easing: transitions.easing.sharp,
+                duration: transitions.duration.leavingScreen,
+            }),
+        },
+    },
+} as const
+
 const info: SxProps = {
     gridArea: AREA.INFO,
     display: "flex",
@@ -71,4 +101,4 @@ const skeleton: { cast: SxProps<Theme>;  cover: SxProps<Theme>; title: SxProps<T
     }
 } as const
 
-export default {container, info, cover, skeleton}
+export default {container, header, info, cover, skeleton}
