@@ -58,7 +58,7 @@ export function Layout() {
                 {drawerContent}
             </Drawer>
                     <AppBar position="static">
-                        <Toolbar>
+                        <Toolbar sx={style.toolbar}>
                             <Button color="inherit" startIcon={<MenuRoundedIcon />} onClick={() => setShowDrawer(true)}>Movie Catalog</Button>
                             <Autocomplete
                                 sx={{ width: 300, backgroundColor: theme => theme.palette.background.paper, borderRadius: 2, }}
