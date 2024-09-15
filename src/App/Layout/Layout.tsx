@@ -74,7 +74,9 @@ export function Layout() {
                                             sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
                                             {...optionProps}
                                         >
-                                            <MenuItem key={option.title} onClick={() => {
+                                            <Box
+                                                sx={{display: 'flex'}}
+                                                onClick={() => {
                                                 navigate(route.movie(option.id.toString()))
                                                 setShowDrawer(false)
                                             }}>
@@ -84,7 +86,7 @@ export function Layout() {
                                                 <ListItemText>
                                                     <Typography color='text.secondary'>{`${option.title} (${option.year})`}</Typography>
                                                 </ListItemText>
-                                            </MenuItem>
+                                            </Box>
                                         </Box>
                                     );
                                 }}
