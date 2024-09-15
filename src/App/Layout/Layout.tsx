@@ -61,7 +61,7 @@ export function Layout() {
                         <Toolbar>
                             <Button color="inherit" startIcon={<MenuRoundedIcon />} onClick={() => setShowDrawer(true)}>Movie Catalog</Button>
                             <Autocomplete
-                                sx={{ width: 300 }}
+                                sx={{ width: 300, backgroundColor: theme => theme.palette.background.paper, borderRadius: 2, }}
                                 options={getMoviesListQuery.moviesList}
                                 autoHighlight
                                 getOptionLabel={(option) => option.title}
@@ -93,7 +93,8 @@ export function Layout() {
                                 renderInput={(params) => (
                                     <TextField
                                         {...params}
-                                        label="Choose a movie"
+                                        placeholder="Choose a movie"
+                                        size="small"
                                         slotProps={{
                                             htmlInput: {
                                                 ...params.inputProps,
