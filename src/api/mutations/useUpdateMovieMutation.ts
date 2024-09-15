@@ -1,16 +1,19 @@
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 
-import {queryKey, endpoint, api} from "api";
+import {queryKey, endpoint, api, Movie} from "api";
 
-export const useUpdateMovieMutation = (updatedData: { id: number; name: string; }) => {
+type NewType = Pick<Movie, 'id'> & Partial<Omit<Movie, 'id'>>;
+
+
+export const useUpdateMovieMutation = () => {
     const queryClient = useQueryClient()
 
-    const deleteMovieMutation = useMutation({
-        mutationFn: async () => await api.patch(endpoint.movie.getById(updatedData.id), {...updatedData}),
+    const updateMovieMutation = useMutation({
+        mutationFn: async ({id, title}: NewType) => await api.patch(endpoint.movie.getById(id), {title}),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: [queryKey.getMoviesList] })
         },
     })
 
-    return {deleteMovieMutation}
+    return {updateMovieMutation}
 }
