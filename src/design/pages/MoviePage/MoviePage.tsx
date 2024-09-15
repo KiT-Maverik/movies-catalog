@@ -69,7 +69,29 @@ export function MoviePage() {
                 cover: <Box component='img' src={cover} sx={style.cover.image}/>,
                 cast: <Typography component='span'>{cast.join(', ')}</Typography>,
                 year: `Year: ${year}`,
-                title: <Typography variant='h3'>{title}</Typography>,
+                title: <Box sx={{display: 'flex', alignItems: 'center', mb: 3}}>
+                    <TextField
+                        variant='standard'
+                        defaultValue={title}
+                        sx={style.header.title} onFocus={() => setEditMode(true)} onBlur={() => setEditMode(false)}
+                    />
+                    <Box sx={{
+                        ...style.header.editControls.idle,
+                        ...{
+                            transition: ({transitions}) => transitions.create('margin', {
+                                easing: transitions.easing.sharp,
+                                duration: transitions.duration.leavingScreen,
+                            }),
+                            ...editMode? { ml: 0 }: {ml: -30}
+                        }}}>
+                        <IconButton>
+                            <CancelIcon/>
+                        </IconButton>
+                        <IconButton onClick={() => 333}>
+                            <ConfirmIcon/>
+                        </IconButton>
+                    </Box>
+                </Box>,
                 director: `Director: ${director}`,
                 genre: `Genre: ${genre}`,
                 rating: <Rating value={rating} readOnly/>,
@@ -86,29 +108,7 @@ export function MoviePage() {
             <Box sx={style.info}>
                 <Stack>
                     <Box sx={style.header.container}>
-                        <Box sx={{display: 'flex', alignItems: 'center', mb: 3}}>
-                            <TextField
-                                variant='standard'
-                                value='oewiowp'
-                                sx={style.header.title} onFocus={() => setEditMode(true)} onBlur={() => setEditMode(false)}
-                            />
-                            <Box sx={{
-                                ...style.header.editControls.idle,
-                                ...{
-                                    transition: ({transitions}) => transitions.create('margin', {
-                                        easing: transitions.easing.sharp,
-                                        duration: transitions.duration.leavingScreen,
-                                    }),
-                                    ...editMode? { ml: 0 }: {ml: -30}
-                                }}}>
-                                <IconButton>
-                                    <CancelIcon/>
-                                </IconButton>
-                                <IconButton onClick={() => 333}>
-                                    <ConfirmIcon/>
-                                </IconButton>
-                            </Box>
-                        </Box>
+                        {title}
                         <IconButton onClick={() => setShowDeleteModal(true)}>
                             <DeleteIcon/>
                         </IconButton>
