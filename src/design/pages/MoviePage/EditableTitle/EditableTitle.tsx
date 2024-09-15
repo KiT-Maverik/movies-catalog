@@ -5,7 +5,7 @@ import {Box, IconButton, InputAdornment, Skeleton, TextField} from "@mui/materia
 import React, {useCallback, useEffect, useMemo, useRef, useState} from "react";
 import {useParams} from "react-router-dom";
 
-import {useGetMovieByIdQuery} from "api";
+import {useGetMovieByIdQuery, useUpdateMovieMutation} from "api";
 
 import style from './EditableTitle.styles'
 
@@ -15,6 +15,7 @@ export const EditableTitle = () => {
     const {getMovieByIdQuery} = useGetMovieByIdQuery(parseInt(movieId || ""))
     const inputRef = useRef<HTMLInputElement>(null);
     const [title, setTitle] = useState("")
+    const {updateMovieMutation} = useUpdateMovieMutation()
 
     useEffect(() => {
         const fetchedTitle = getMovieByIdQuery.data?.data.title;
@@ -52,8 +53,13 @@ export const EditableTitle = () => {
                     </IconButton>
                 </InputAdornment>
                 <InputAdornment position="end">
-                    <IconButton onClick={() => {
-                        disableEditMode()
+                    <IconButton onClick={async () => {
+                        await updateMovieMutation.mutateAsync(
+                            {id: parseInt(movieId || ""), title },
+                            {
+                                onSuccess: (rs) => console.log(rs)
+                            }
+                            ).finally(() => disableEditMode())
                     }}>
                         <ConfirmIcon/>
                     </IconButton>
@@ -68,7 +74,7 @@ export const EditableTitle = () => {
             </InputAdornment>
         )
 
-    }, [editMode, title]);
+    }, [editMode, title, getMovieByIdQuery]);
 
     if (getMovieByIdQuery.isLoading) return <Skeleton sx={style.skeleton}/>
 
