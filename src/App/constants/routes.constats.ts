@@ -1,4 +1,4 @@
 export const route = {
   home: "/",
-  movie: (id = ":movieId") => `movie/${id}`,
+  movie: (id: string = ":movieId") => `movie/${id}`,
 };
