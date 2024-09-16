@@ -4,9 +4,18 @@ const express = require('express')
 let movies = require('./data/movies.data')
 const app = express()
 const port = process.env.SERVER_PORT;
+const delay = process.env.RESPONSE_DELAY;
+
+// Delay middleware
+const delayMiddleware = (req, res, next) => {
+    setTimeout(() => {
+        next();
+    }, delay);
+};
 
 app.use(cors());
 app.use(express.json());
+app.use(delayMiddleware);
 
 app.get('/movies', (req, res) => {
     res.json(movies)
