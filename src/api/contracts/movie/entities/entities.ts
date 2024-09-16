@@ -2,6 +2,8 @@ import { z } from "zod";
 
 export const movieId = z.string().uuid();
 
+export type MovieId = z.infer<typeof movieId>;
+
 export const movie = z.object({
   id: movieId,
   title: z.string(),

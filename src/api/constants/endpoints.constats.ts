@@ -1,6 +1,8 @@
+import { MovieId } from "api";
+
 export const endpoint = {
   movie: {
-    getById: (id: number) => `movies/${id}`,
+    getById: (id: MovieId) => `movies/${id}`,
     getList: "movies",
   },
 };
