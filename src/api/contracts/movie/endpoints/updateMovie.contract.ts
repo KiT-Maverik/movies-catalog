@@ -1,9 +1,8 @@
 import { z } from "zod";
-import { movie } from "api";
 
 const request = z.object({ id: z.string() });
 
-const response = z.array(movie);
+const response = z.object({ message: z.string() });
 
 export const updateMovieContract = { request, response };
 

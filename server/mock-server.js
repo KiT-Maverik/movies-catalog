@@ -33,12 +33,12 @@ app.patch("/movies/:id", (req, res) => {
       return { ...movie, ...req.body };
     else return movie;
   });
-  res.status(200).json({ status: "Movie updated" });
+  res.status(200).json({ message: "Movie updated" });
 });
 
 app.delete("/movies/:id", (req, res) => {
   movies = movies.filter((movie) => movie.id !== parseInt(req.params.id, 10));
-  res.status(204).json({ status: "Movie deleted" });
+  res.status(204).json({ message: "Movie deleted" });
 });
 
 app.listen(port, () => {

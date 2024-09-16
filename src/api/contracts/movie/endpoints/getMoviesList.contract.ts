@@ -1,4 +1,8 @@
 import { z } from "zod";
-import { movieThumbnail } from "api/contracts/movie/entities/entities";
+import { movie } from "api";
 
-const response = z.object({ movies: z.array(movieThumbnail) });
+const response = z.array(movie);
+
+export const getMoviesListContract = { response };
+
+export type getMoviesList_Response = z.infer<typeof response>;
