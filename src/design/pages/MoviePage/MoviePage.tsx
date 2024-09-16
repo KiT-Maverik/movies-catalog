@@ -53,8 +53,8 @@ export function MoviePage() {
     deleteMovieMutation.mutateAsync(
       { id: movieId || "" },
       {
-        onSuccess: (data) => {
-          showToast({ type: "info", message: data.data.message });
+        onSuccess: () => {
+          showToast({ type: "info", message: "Movie deleted" });
           navigate(route.home);
         },
       },

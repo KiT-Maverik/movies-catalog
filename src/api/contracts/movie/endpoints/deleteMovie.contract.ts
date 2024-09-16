@@ -3,7 +3,7 @@ import { movieId } from "../entities/entities";
 
 const request = z.object({ id: movieId });
 
-const response = z.object({ message: z.string() });
+const response = z.undefined();
 
 export const deleteMovieContract = { request, response };
 
