@@ -131,7 +131,7 @@ export function Layout() {
             renderInput={(params) => (
               <TextField
                 {...params}
-                placeholder="Choose a movie"
+                placeholder="Search"
                 size="small"
                 slotProps={{
                   htmlInput: {
