@@ -1,5 +1,4 @@
 import {SxProps, Theme} from "@mui/material";
-import {theme} from "../../../styles";
 
 enum AREA {
     COVER = 'cover',
@@ -9,13 +8,14 @@ enum AREA {
 export const container: SxProps<Theme> = (theme: Theme) => ({
     display: "grid",
     gap: 5,
-    gridTemplateColumns: '1fr 1fr',
+    gridTemplateColumns: '1fr',
     gridTemplateAreas: `
         "${AREA.COVER}"
         "${AREA.INFO}"
     `,
 
     [theme.breakpoints.up("tablet")]: {
+        gridTemplateColumns: '1fr 1fr',
         gridTemplateAreas: `
         "${AREA.COVER} ${AREA.INFO}"
     `,
