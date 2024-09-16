@@ -84,6 +84,7 @@ const skeleton: { cast: SxProps<Theme>;  cover: SxProps<Theme>; title: SxProps<T
     },
     title: {
         fontSize: theme => theme.typography.h3.fontSize,
+        width: 1,
         maxWidth: 250,
     },
     genre: {
