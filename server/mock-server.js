@@ -22,22 +22,19 @@ app.get("/movies", (req, res) => {
 });
 
 app.get("/movies/:id", (req, res) => {
-  res
-    .status(200)
-    .json(movies.find((movie) => movie.id === parseInt(req.params.id)));
+  res.status(200).json(movies.find((movie) => movie.id === req.params.id));
 });
 
 app.patch("/movies/:id", (req, res) => {
   movies = movies.map((movie) => {
-    if (movie.id === parseInt(req.params.id, 10))
-      return { ...movie, ...req.body };
+    if (movie.id === req.params.id) return { ...movie, ...req.body };
     else return movie;
   });
   res.status(200).json({ message: "Movie updated" });
 });
 
 app.delete("/movies/:id", (req, res) => {
-  movies = movies.filter((movie) => movie.id !== parseInt(req.params.id, 10));
+  movies = movies.filter((movie) => movie.id !== req.params.id, 10);
   res.status(204).json({ message: "Movie deleted" });
 });
 
