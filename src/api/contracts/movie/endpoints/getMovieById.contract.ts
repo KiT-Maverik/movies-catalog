@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { movie } from "api";
+import { movie, movieId } from "api";
 
-const request = z.object({ id: z.string() });
+const request = z.object({ id: movieId });
 
 const response = z.array(movie);
 

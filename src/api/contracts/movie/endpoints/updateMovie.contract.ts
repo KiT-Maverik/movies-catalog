@@ -1,6 +1,7 @@
 import { z } from "zod";
+import { movieId } from "api";
 
-const request = z.object({ id: z.string() });
+const request = z.object({ id: movieId });
 
 const response = z.object({ message: z.string() });
 

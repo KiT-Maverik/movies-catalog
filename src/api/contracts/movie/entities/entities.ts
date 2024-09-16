@@ -1,7 +1,9 @@
 import { z } from "zod";
 
+export const movieId = z.string().uuid();
+
 export const movie = z.object({
-  id: z.number().positive(),
+  id: movieId,
   title: z.string(),
   cover: z.string(),
   thumb: z.string(),
