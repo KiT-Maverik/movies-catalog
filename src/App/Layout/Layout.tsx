@@ -8,20 +8,31 @@ import {
     Toolbar,
     Typography,
     ListItemText,
-    ListItemIcon, MenuItem, MenuList, TextField, Autocomplete
+    ListItemIcon, MenuItem, MenuList, TextField, Autocomplete, IconButton
 } from "@mui/material";
 import React, {useMemo, useState} from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import {useGetMoviesListQuery} from "api/queries/movies/useGetMoviesListQuery";
 
+import {useGetMoviesListQuery} from "api/queries/movies/useGetMoviesListQuery";
 import {route} from "App";
+import {useScreenDetect} from "hooks";
+
 import style from './Layout.styles'
 
 export function Layout() {
     const [showDrawer, setShowDrawer] = useState(false)
 
     const navigate = useNavigate()
+    const {isTablet} = useScreenDetect()
     const {getMoviesListQuery} = useGetMoviesListQuery()
+
+    const menu = useMemo(() => {
+        if (isTablet) return (<IconButton color="inherit" onClick={() => setShowDrawer(true)}><MenuRoundedIcon /></IconButton>)
+        else return (
+            <Button color="inherit" startIcon={<MenuRoundedIcon />} onClick={() => setShowDrawer(true)}>Movie Catalog</Button>
+        )
+
+    }, [isTablet]);
 
     const drawerContent = useMemo(() => {
         if (getMoviesListQuery.isLoading) return [1, 2, 3, 4, 5].map(item => (
@@ -59,7 +70,7 @@ export function Layout() {
             </Drawer>
                     <AppBar position="static">
                         <Toolbar sx={style.toolbar}>
-                            <Button color="inherit" startIcon={<MenuRoundedIcon />} onClick={() => setShowDrawer(true)}>Movie Catalog</Button>
+                            {menu}
                             <Autocomplete
                                 sx={{ width: 300, backgroundColor: theme => theme.palette.background.paper, borderRadius: 2, }}
                                 options={getMoviesListQuery.moviesList}
