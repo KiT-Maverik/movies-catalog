@@ -10,8 +10,8 @@ export const useUpdateMovieMutation = () => {
 
     const updateMovieMutation = useMutation({
         mutationFn: async ({id, title}: NewType) => await api.patch(endpoint.movie.getById(id), {title}),
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: [queryKey.getMoviesList] })
+        onSuccess: (_, {id}) => {
+            queryClient.invalidateQueries({ queryKey: [queryKey.getMoviesList, queryKey.getMovieById(id)] })
         },
     })
 

@@ -1,6 +1,6 @@
 export const queryKey = {
     getMoviesList: "Get Movies List",
-    getMovieById: "Get Movie By Id",
+    getMovieById: (id: number) => `Get Movie By Id (${id})`,
     updateMovie: "Update Movie",
     deleteMovie: "Delete Movie",
 }
