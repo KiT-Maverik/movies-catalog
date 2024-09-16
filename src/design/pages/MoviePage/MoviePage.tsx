@@ -114,7 +114,10 @@ export function MoviePage() {
         <Stack>
           <Box sx={style.header.container}>
             {title}
-            <IconButton onClick={(event) => setMenuAnchor(event.currentTarget)}>
+            <IconButton
+              disabled={getMovieByIdQuery.isLoading}
+              onClick={(event) => setMenuAnchor(event.currentTarget)}
+            >
               <OperationsIcon />
             </IconButton>
             <Menu
