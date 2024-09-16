@@ -25,10 +25,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { route, useToast } from "App";
 import { useDeleteMovieMutation, useGetMovieByIdQuery } from "api";
 import { Movie } from "api/contracts/movie/entities/entities";
-
 import { Page, Modal } from "design/templates";
-import style from "./MoviePage.styles";
+
 import { EditMovieModal } from "./EditMovieModal/EditMovieModal";
+import style from "./MoviePage.styles";
 
 export function MoviePage() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -39,7 +39,7 @@ export function MoviePage() {
   const navigate = useNavigate();
 
   const { deleteMovieMutation } = useDeleteMovieMutation();
-  const { getMovieByIdQuery } = useGetMovieByIdQuery(parseInt(movieId || ""));
+  const { getMovieByIdQuery } = useGetMovieByIdQuery({ id: movieId || "" });
 
   useEffect(() => {
     getMovieByIdQuery.refetch();
@@ -50,12 +50,15 @@ export function MoviePage() {
   }, []);
 
   const handleMovieDelete = useCallback(() => {
-    deleteMovieMutation.mutateAsync(parseInt(movieId || ""), {
-      onSuccess: () => {
-        showToast({ type: "info", message: "Movie deleted" });
-        navigate(route.home);
+    deleteMovieMutation.mutateAsync(
+      { id: movieId || "" },
+      {
+        onSuccess: (data) => {
+          showToast({ type: "info", message: data.data.message });
+          navigate(route.home);
+        },
       },
-    });
+    );
   }, []);
 
   const { cover, cast, year, title, director, genre, rating, plotSummary } =
