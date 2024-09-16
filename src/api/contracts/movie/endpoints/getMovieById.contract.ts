@@ -3,7 +3,7 @@ import { movie, movieId } from "api";
 
 const request = z.object({ id: movieId });
 
-const response = z.array(movie);
+const response = movie;
 
 export const getMovieByIdContract = { request, response };
 
