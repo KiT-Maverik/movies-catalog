@@ -5,6 +5,7 @@ import {
   Box,
   Button,
   Divider,
+  CircularProgress,
   IconButton,
   Menu,
   MenuItem,
@@ -12,6 +13,7 @@ import {
   Skeleton,
   Stack,
   Typography,
+  Fade,
 } from "@mui/material";
 import React, {
   ReactNode,
@@ -179,7 +181,24 @@ export function MoviePage() {
           <Button variant="text" onClick={() => setShowDeleteModal(false)}>
             Cancel
           </Button>
-          <Button variant="contained" color="error" onClick={handleMovieDelete}>
+          <Button
+            variant="contained"
+            sx={{
+              position: "relative",
+              color: getMovieByIdQuery.isPending ? "transparent" : "",
+            }}
+            color="error"
+            disabled={deleteMovieMutation.isPending}
+            onClick={handleMovieDelete}
+          >
+            <CircularProgress
+              size={20}
+              color="inherit"
+              sx={{
+                position: "absolute",
+                display: deleteMovieMutation.isPending ? "block" : "none",
+              }}
+            />
             Delete
           </Button>
         </Modal.Actions>
