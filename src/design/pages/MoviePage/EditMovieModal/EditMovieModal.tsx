@@ -1,6 +1,6 @@
 import CancelIcon from "@mui/icons-material/CloseRounded";
 import SaveIcon from "@mui/icons-material/CheckRounded";
-import { Button, TextField } from "@mui/material";
+import { Button, CircularProgress, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import { useParams } from "react-router-dom";
 import { toFormikValidationSchema } from "zod-formik-adapter";
@@ -8,6 +8,7 @@ import { toFormikValidationSchema } from "zod-formik-adapter";
 import { useGetMovieByIdQuery, useUpdateMovieMutation, movie } from "api";
 import { useToast } from "App";
 import { Modal } from "design/templates";
+import React from "react";
 
 interface EditMovieModalProps {
   open: boolean;
@@ -59,10 +60,23 @@ export const EditMovieModal = ({ onClose, open }: EditMovieModalProps) => {
           Cancel
         </Button>
         <Button
-          startIcon={<SaveIcon />}
           variant="contained"
+          startIcon={<SaveIcon />}
+          sx={{
+            position: "relative",
+            color: getMovieByIdQuery.isPending ? "transparent" : "",
+          }}
+          disabled={updateMovieMutation.isPending}
           onClick={submitForm}
         >
+          <CircularProgress
+            size={20}
+            color="inherit"
+            sx={{
+              position: "absolute",
+              display: updateMovieMutation.isPending ? "block" : "none",
+            }}
+          />
           Save
         </Button>
       </Modal.Actions>
