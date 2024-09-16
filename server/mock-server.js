@@ -27,7 +27,7 @@ app.get("/movies/:id", (req, res) => {
 
 app.patch("/movies/:id", (req, res) => {
   movies = movies.map((movie) => {
-    if (movie.id === req.params.id) return { ...movie, ...req.body };
+    if (movie.id === req.params.id) return { ...movie, ...req.body.data };
     else return movie;
   });
   res.status(200).json({ message: "Movie updated" });
