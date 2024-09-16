@@ -1,6 +1,6 @@
 const movies = [
   {
-    id: 1,
+    id: "8a56fdd1-47bb-4b2c-9343-7f13a1622390",
     title: "Inception",
     cover: "/img/inception.png",
     thumb: "/img/inception_thumb.png",
@@ -13,7 +13,7 @@ const movies = [
     rating: 4.8,
   },
   {
-    id: 2,
+    id: "5b1a6d53-df13-486f-82ac-3bfc25ac30d9",
     title: "The Godfather",
     cover: "/img/the_godfather.png",
     thumb: "/img/the_godfather__thumb.png",
@@ -26,7 +26,7 @@ const movies = [
     rating: 5.0,
   },
   {
-    id: 3,
+    id: "afc8c210-3f67-4a5e-b022-f037e48a25cf",
     title: "The Dark Knight",
     cover: "/img/the_dark_knight.png",
     thumb: "/img/the_dark_knight__thumb.png",
@@ -39,7 +39,7 @@ const movies = [
     rating: 4.9,
   },
   {
-    id: 4,
+    id: "b9a7e340-6179-49c6-8261-306aa4578a2f",
     title: "Pulp Fiction",
     cover: "/img/pulp_fiction.png",
     thumb: "/img/pulp_fiction__thumb.png",
@@ -52,7 +52,7 @@ const movies = [
     rating: 4.7,
   },
   {
-    id: 5,
+    id: "ff85072f-bd7a-4a10-9394-5f7e6e8d0235",
     title: "Forrest Gump",
     cover: "/img/forrest_gump.png",
     thumb: "/img/forrest_gump__thumb.png",
@@ -65,7 +65,7 @@ const movies = [
     rating: 4.6,
   },
   {
-    id: 6,
+    id: "7d8a0e5f-473b-445b-b1d2-14f928ae6df7",
     title: "Gladiator",
     cover: "/img/gladiator.png",
     thumb: "/img/gladiator__thumb.png",
@@ -78,7 +78,7 @@ const movies = [
     rating: 4.5,
   },
   {
-    id: 7,
+    id: "aad4de55-9b4f-4cd8-93b1-7b0f479b0e18",
     title: "Titanic",
     cover: "/img/titanic.png",
     thumb: "/img/titanic_thumb.png",
@@ -91,7 +91,7 @@ const movies = [
     rating: 4.4,
   },
   {
-    id: 8,
+    id: "d81a1044-b95f-4e44-bd7d-0052a1e3f3a5",
     title: "Jurassic Park",
     cover: "/img/jurassic_park.png",
     thumb: "/img/jurassic_park__thumb.png",
@@ -104,7 +104,7 @@ const movies = [
     rating: 4.7,
   },
   {
-    id: 9,
+    id: "1c3a4903-6580-4cd2-9fa1-c20c60ac0d8f",
     title: "The Shawshank Redemption",
     cover: "/img/the_shawshank_redemption.png",
     thumb: "/img/the_shawshank_redemption__thumb.png",
@@ -117,7 +117,7 @@ const movies = [
     rating: 5.0,
   },
   {
-    id: 10,
+    id: "f19c3c94-9b59-4b44-bd67-e50369c4b132",
     title: "The Matrix",
     cover: "/img/the_matrix.png",
     thumb: "/img/the_matrix__thumb.png",
