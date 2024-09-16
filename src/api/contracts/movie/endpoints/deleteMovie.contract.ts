@@ -1,3 +1,3 @@
-import {z} from "zod";
+import { z } from "zod";
 
-const request = z.object({ id: z.string()})
+const request = z.object({ id: z.string() });

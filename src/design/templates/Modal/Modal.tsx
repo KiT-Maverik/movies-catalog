@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import style from "./Modal.styles";
-import {ModalWidth, modalWidthParams} from "./Modal.constants";
+import { ModalWidth, modalWidthParams } from "./Modal.constants";
 
 export type ModalLayout = "window" | "fullscreen";
 
@@ -37,7 +37,7 @@ export const Modal = ({
   layout = "window",
   onClose,
   width = "md",
-                        open,
+  open,
   ContentProps,
 }: ModalProps) => {
   return (
@@ -75,11 +75,7 @@ const Header = (props: ModalHeaderProps) => {
   const content = useMemo(() => {
     if (title)
       return (
-        <Typography
-          variant="h5"
-          flexGrow={1}
-          {...titleProps}
-        >
+        <Typography variant="h5" flexGrow={1} {...titleProps}>
           {title}
         </Typography>
       );
@@ -98,10 +94,7 @@ const Header = (props: ModalHeaderProps) => {
   }, [onClose]);
 
   return (
-    <Box
-      sx={style.modal.header(!!title, !!nodeTitle)}
-      {...rest}
-    >
+    <Box sx={style.modal.header(!!title, !!nodeTitle)} {...rest}>
       {content}
       {closeButton}
     </Box>
@@ -126,10 +119,7 @@ const Actions = (props: BoxProps) => {
   if (!props.children) return null;
 
   return (
-    <Box
-      sx={style.modal.actions}
-      {...props}
-    >
+    <Box sx={style.modal.actions} {...props}>
       {props.children}
     </Box>
   );

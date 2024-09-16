@@ -1,6 +1,6 @@
 export const endpoint = {
-    movie: {
-        getById: (id: number) => `movies/${id}`,
-        getList: 'movies'
-    }
-}
+  movie: {
+    getById: (id: number) => `movies/${id}`,
+    getList: "movies",
+  },
+};

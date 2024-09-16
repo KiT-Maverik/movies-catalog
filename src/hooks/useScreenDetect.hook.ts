@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 // RESOURCES
-import {useTheme} from "@mui/material";
+import { useTheme } from "@mui/material";
 
 export function useScreenDetect() {
   const initialState = {
@@ -12,17 +12,20 @@ export function useScreenDetect() {
     isOversized: false,
   };
 
-  const {breakpoints} = useTheme()
+  const { breakpoints } = useTheme();
   const [screenType, setScreenType] = useState(initialState);
 
   const detectScreen = useCallback(() => {
     setScreenType({
-      isPhone: window.matchMedia(`(max-width: ${breakpoints.values.mobile - 1}px)`)
-        .matches,
-      isTablet:
-        window.matchMedia(`(max-width: ${breakpoints.values.tablet - 1}px)`).matches,
-      isDesktop: window.matchMedia(`(min-width: ${breakpoints.values.desktop}px)`)
-        .matches,
+      isPhone: window.matchMedia(
+        `(max-width: ${breakpoints.values.mobile - 1}px)`,
+      ).matches,
+      isTablet: window.matchMedia(
+        `(max-width: ${breakpoints.values.tablet - 1}px)`,
+      ).matches,
+      isDesktop: window.matchMedia(
+        `(min-width: ${breakpoints.values.desktop}px)`,
+      ).matches,
       isOversized: window.matchMedia(
         `(min-width: ${breakpoints.values.fullWidth + 1}px)`,
       ).matches,

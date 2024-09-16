@@ -1,1 +1,1 @@
-export * from './useScreenDetect.hook'
+export * from "./useScreenDetect.hook";
