@@ -7,6 +7,7 @@
     "app:build": "react-scripts build",
     "app:test": "react-scripts test",
     "config:eject": "react-scripts eject",
+    "lint:fix": "eslint . --fix",
     "server:start": "node server/mock-server.js"
   },
   "dependencies": {
