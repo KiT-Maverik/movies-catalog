@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { movie } from "api";
+import { movie } from "../entities/entities";
 
 const response = z.array(movie);
 

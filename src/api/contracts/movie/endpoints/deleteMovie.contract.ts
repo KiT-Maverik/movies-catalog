@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { movieId } from "api";
+import { movieId } from "../entities/entities";
 
 const request = z.object({ id: movieId });
 
