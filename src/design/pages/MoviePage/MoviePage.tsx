@@ -19,9 +19,11 @@ import {Movie} from "api/contracts/movie/entities/entities";
 
 import {Page, Modal} from "design/templates";
 import style from './MoviePage.styles'
+import {EditMovieModal} from "./EditMovieModal/EditMovieModal";
 
 export function MoviePage() {
     const [showDeleteModal, setShowDeleteModal] = useState(false)
+    const [showEditModal, setShowEditModal] = useState(false)
     const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
     const { movieId } = useParams();
     const { showToast } = useToast();
@@ -98,7 +100,10 @@ export function MoviePage() {
                         >
                             <MenuItem
                                 sx={style.header.menuItem}
-                                onClick={handleCloseMenu}
+                                onClick={() => {
+                                    setShowEditModal(true)
+                                    handleCloseMenu()
+                                }}
                             >
                                 <EditIcon/>
                                 Edit
@@ -137,6 +142,9 @@ export function MoviePage() {
                     <Button variant='contained' color="error" onClick={handleMovieDelete}>Delete</Button>
                 </Modal.Actions>
             </Modal>
+            <EditMovieModal open={showEditModal} onClose={() => {
+                setShowEditModal(false)
+            }}/>
         </Page>
     );
 }
