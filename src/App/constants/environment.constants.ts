@@ -1,1 +1,1 @@
-export const projectName = "Movie collection"
+export const projectName = "Movie catalog"
