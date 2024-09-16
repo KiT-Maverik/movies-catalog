@@ -3,10 +3,11 @@ import SaveIcon from "@mui/icons-material/CheckRounded";
 import { Button, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import { useParams } from "react-router-dom";
+import { toFormikValidationSchema } from "zod-formik-adapter";
 
-import { useGetMovieByIdQuery, useUpdateMovieMutation } from "api";
-import { Modal } from "design/templates";
+import { useGetMovieByIdQuery, useUpdateMovieMutation, movie } from "api";
 import { useToast } from "App";
+import { Modal } from "design/templates";
 
 interface EditMovieModalProps {
   open: boolean;
@@ -16,18 +17,19 @@ interface EditMovieModalProps {
 export const EditMovieModal = ({ onClose, open }: EditMovieModalProps) => {
   const { movieId } = useParams();
   const { showToast } = useToast();
-  const { getMovieByIdQuery } = useGetMovieByIdQuery(parseInt(movieId || ""));
+  const { getMovieByIdQuery } = useGetMovieByIdQuery({ id: movieId || "" });
   const { updateMovieMutation } = useUpdateMovieMutation();
 
   const { handleBlur, handleChange, values, submitForm } = useFormik({
     initialValues: {
       title: getMovieByIdQuery.data?.data.title,
     },
+    validationSchema: toFormikValidationSchema(movie.pick({ title: true })),
     onSubmit: (values) => {
       updateMovieMutation.mutateAsync(
         {
-          id: parseInt(movieId || ""),
-          title: values.title,
+          id: movieId || "",
+          data: { title: values.title },
         },
         {
           onSuccess: () => {
