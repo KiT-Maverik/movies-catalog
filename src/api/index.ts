@@ -7,7 +7,8 @@ export * from "./constants/endpoints.constats";
 // Contracts
 export * from "./contracts/movie/endpoints/deleteMovie.contract";
 export * from "./contracts/movie/endpoints/getMovieById.contract";
-export * from "./contracts/movie/endpoints/deleteMovie.contract";
+export * from "./contracts/movie/endpoints/updateMovie.contract";
+export * from "./contracts/movie/endpoints/getMoviesList.contract";
 export * from "./contracts/movie/entities/entities";
 
 // Mutations

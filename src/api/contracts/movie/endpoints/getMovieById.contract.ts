@@ -5,7 +5,7 @@ const request = z.object({ id: z.string() });
 
 const response = z.array(movie);
 
-export const updateMovieContract = { request, response };
+export const getMovieByIdContract = { request, response };
 
-export type UpdateMovie_Request = z.infer<typeof request>;
-export type UpdateMovie_Response = z.infer<typeof response>;
+export type GetMovieById_Request = z.infer<typeof request>;
+export type GetMovieById_Response = z.infer<typeof response>;
