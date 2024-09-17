@@ -1,9 +1,10 @@
 import { z } from "zod";
 import { movie, movieId } from "../entities/entities";
+import { message } from "../../utility/entities/generic";
 
 const request = z.object({ id: movieId, data: movie.partial() });
 
-const response = z.object({ message: z.string() });
+const response = message;
 
 export const updateMovieContract = { request, response };
 
