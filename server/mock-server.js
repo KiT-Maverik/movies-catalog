@@ -35,7 +35,7 @@ app.patch("/movies/:id", (req, res) => {
 
 app.delete("/movies/:id", (req, res) => {
   movies = movies.filter((movie) => movie.id !== req.params.id, 10);
-  res.status(204).json({ message: "Movie deleted" });
+  res.status(204).send();
 });
 
 app.use((req, res) => {
