@@ -38,6 +38,10 @@ app.delete("/movies/:id", (req, res) => {
   res.status(204).json({ message: "Movie deleted" });
 });
 
+app.use((req, res) => {
+  res.status(404).json({ message: "Unknown route" });
+});
+
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
