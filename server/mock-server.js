@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(delayMiddleware);
 
 app.get("/movies", (req, res) => {
-  res.json(movies);
+  res.status(200).json(movies);
 });
 
 app.get("/movies/:id", (req, res) => {
